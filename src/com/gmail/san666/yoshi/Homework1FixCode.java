@@ -2,17 +2,17 @@ package com.gmail.san666.yoshi;
 
 public class Homework1FixCode {
     public static void main(String[] args) {
-        int a = 6;
-        int b = 8;
-        sum(a, b);  // 14
-        sum(3, a);  // 9
+        int value1 = 6;
+        int value2 = 8;
+        sum(value1, value2);  // 14
+        sum(3, value1);  // 9
         sum(5, 23); // 28
     }
 
     static void sum(int x, int y) {
 
-        int z = x + y;
-        System.out.println(z);
+        int sum = x + y;
+        System.out.println(sum);
 
     }
 }
