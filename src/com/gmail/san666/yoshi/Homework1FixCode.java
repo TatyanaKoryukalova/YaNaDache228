@@ -11,8 +11,8 @@ public class Homework1FixCode {
 
     static void sum(int x, int y) {
 
-        int sum = x + y;
-        System.out.println(sum);
+        int sumValue = x + y;
+        System.out.println(sumValue);
 
     }
 }
