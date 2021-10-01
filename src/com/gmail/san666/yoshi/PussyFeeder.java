@@ -51,28 +51,30 @@ public class PussyFeeder {
                     System.out.println("Кого будем кормить?");
                     printAllPussies();
                     int pussyIndex = scan.nextInt();
-                    System.out.println("Сколько пакетиков положить?");
+                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
                     int foodCounter = scan.nextInt();
                     feedOnePussy(pussyIndex,foodCounter);
+                    printAllThePussiesFood();
                     break;
                 case 2 :
-                    System.out.println("Сколько пакетиков положить?");
+                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
                     feedAllThePussies(scan.nextInt());
+                    printAllThePussiesFood();
                     break;
                 case 3:
-                    System.out.println("Сколько пакетиков положить?");
+                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
                     feedEvenOrOddPussies(true, scan.nextInt());
+                    printAllThePussiesFood();
                     break;
                 case 4 :
-                    System.out.println("Сколько пакетиков положить?");
+                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+                    feedEvenOrOddPussies(false, scan.nextInt());
+                    printAllThePussiesFood();
                     break;
                 case 0 :
                     return;
             }
         }
-
-        //TODO перенести этот вызов в нужное место
-//        printAllThePussiesFood();
     }
 
     private static void printAllPussies() {
@@ -82,33 +84,41 @@ public class PussyFeeder {
     }
 
     private static void printAllThePussiesFood() {
+        System.out.println();
         for (int i = 0; i < pussiesNames.length; i++) {
             System.out.println("В кормушке " + pussiesNames[i] + " " + pussiesFeeders[i] + " пакетиков еды");
         }
+        System.out.println();
     }
 
     private static void feedEvenOrOddPussies(boolean isEven, int foodCounter) {
+        if (isEven){
+            for (int i = 0; i < pussiesNames.length; i+=2) {
+                feedOnePussy(i,foodCounter);
+            }
+        } else{
+            for (int i = 1; i < pussiesNames.length; i+=2) {
+                feedOnePussy(i,foodCounter);
+            }
+        }
     }
 
     private static void feedAllThePussies(int amountOfFeed) {
         for (int i = 0; i < pussiesNames.length; i++){
             feedOnePussy(i,amountOfFeed);
         }
-//        циклом вызвать следующий метод 8 раз для каждой кошки
     }
 
     private static void feedOnePussy(int pussyIndex, int amountOfFeed) {
         if((pussiesFeeders[pussyIndex] + amountOfFeed) < 0){
             System.out.println("Нельзя сделать меньше, чем ничего. В миске пусто.");
-            printAllThePussiesFood();
             return;
         }
         if ((pussiesFeeders[pussyIndex] + amountOfFeed) > 7){
             System.out.println("А киска-то не лопнет? Нельзя положить больше 7 пакетиков в одну кормушку.");
-            printAllThePussiesFood();
+            System.out.println("Не удалось покормить " + pussiesNames[pussyIndex]);
             return;
         }
         pussiesFeeders[pussyIndex] += amountOfFeed;
-        printAllThePussiesFood();
     }
 }
