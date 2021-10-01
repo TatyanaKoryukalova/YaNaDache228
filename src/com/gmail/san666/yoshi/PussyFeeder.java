@@ -1,8 +1,6 @@
 package com.gmail.san666.yoshi;
 
-import com.sun.deploy.util.ArrayUtil;
-
-import java.util.Arrays;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -30,65 +28,87 @@ import java.util.Scanner;
  */
 
 public class PussyFeeder {
-    static String [] cats = new String[8];
-    static int [] food = new int[8];
+    static String [] pussiesNames = new String[] {"Коко","Мими","Широ","Лаки","Кики","Момо","Люси","Куро"};
+    static int [] pussiesFeeders = new int[8];
     static Scanner scan = new Scanner(System.in);
 
 
     public static void main(String[] args) {
-
-        createPussies(); //user gives names to pussies
-        listAllThePussies();
-        feedOnePussy(5,3); //write
-        feedAllThePussies(2); //write
-        feedEvenOrOddPussies(); //write
-        amountOfFeeds();
-//        System.out.println(Arrays.asList(cats).indexOf("5")); - receive index of a certain pussy
+        menu();
     }
 
-    private static void listAllThePussies() {
-        for(String item : cats){
-            System.out.println("Name of pussy is " + item );
+    private static void menu() {
+//ТРАБЛЫ
+        while (true){
+            System.out.println("Меню:");
+            System.out.println("1. Покормить одного кота");//брейки
+            System.out.println("2. Покормить всех котов");
+            System.out.println("3. Покормить только четных котов");
+            System.out.println("4. Покормить только нечетных котов");
+            System.out.println("0. Выход");
+            switch (scan.nextInt()){
+                case 1 :
+                    System.out.println("Кого будем кормить?");
+                    printAllPussies();
+                    int pussyIndex = scan.nextInt();
+                    System.out.println("Сколько пакетиков положить?");
+                    int foodCounter = scan.nextInt();
+                    feedOnePussy(pussyIndex,foodCounter);
+                case 2 :
+                    System.out.println("Сколько пакетиков положить?");
+                    feedAllThePussies(scan.nextInt());
+                case 3:
+                    System.out.println("Сколько пакетиков положить?");
+                    feedEvenOrOddPussies(true, scan.nextInt());
+                case 4 :
+                    System.out.println("Сколько пакетиков положить?");
+                case 0 :
+                    return;
+
+            }
         }
 
+        //TODO перенести этот вызов в нужное место
+//        printAllThePussiesFood();
     }
 
-    private static void createPussies() {
-        for(int i = 0; i < cats.length; i++){
-            System.out.println("Give name for " + (i+1) + " pussy");
-            cats[i] = scan.nextLine();
+    private static void printAllPussies() {
+        for (int i = 0; i < pussiesFeeders.length; i++) {
+            System.out.println(i + " - " + pussiesNames[i]);
         }
-        scan.close();
     }
 
-    private static void amountOfFeeds() {
+    private static void printAllThePussiesFood() {
+        for (int i = 0; i < pussiesNames.length; i++) {
+            System.out.println("В кормушке " + pussiesNames[i] + " " + pussiesFeeders[i] + " пакетиков еды");
+        }
     }
 
-    private static void feedEvenOrOddPussies() {
+    private static void feedEvenOrOddPussies(boolean isEven, int foodCounter) {
     }
 
     private static void feedAllThePussies(int amountOfFeed) {
-        for (int i = 0; i < cats.length; i++){
+        for (int i = 0; i < pussiesNames.length; i++){
             feedOnePussy(i,amountOfFeed);
         }
 //        циклом вызвать следующий метод 8 раз для каждой кошки
     }
 
     private static void feedOnePussy(int pussyIndex, int amountOfFeed) {
-        if((food[pussyIndex] + amountOfFeed) < 0){
+        if((pussiesFeeders[pussyIndex] + amountOfFeed) < 0){
             System.out.println("Нельзя сделать меньше, чем ничего");
-            System.out.println("Сейчас в кормушке " + cats[pussyIndex] + " " + food[pussyIndex] + " пакетиков");
+            System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
             return;
         }
-        if ((food[pussyIndex] + amountOfFeed) > 7){
+        if ((pussiesFeeders[pussyIndex] + amountOfFeed) > 7){
             System.out.println("А киска-то не лопнет? Нельзя положить больше 7 пакетиков в одну кормушку");
             //Может с этим что-то сделать? v
-            System.out.println("Сейчас в кормушке " + cats[pussyIndex] + " " + food[pussyIndex] + " пакетиков");
+            System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
             return;
         }
-        food[pussyIndex] += amountOfFeed;
+        pussiesFeeders[pussyIndex] += amountOfFeed;
 //        System.out.println(food[pussyIndex]);
-        System.out.println("Сейчас в кормушке " + cats[pussyIndex] + " " + food[pussyIndex] + " пакетиков");
+        System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
 
     }//ну как-то так примерно, посмотреть еще
 }
