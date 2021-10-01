@@ -54,17 +54,20 @@ public class PussyFeeder {
                     System.out.println("Сколько пакетиков положить?");
                     int foodCounter = scan.nextInt();
                     feedOnePussy(pussyIndex,foodCounter);
+                    break;
                 case 2 :
                     System.out.println("Сколько пакетиков положить?");
                     feedAllThePussies(scan.nextInt());
+                    break;
                 case 3:
                     System.out.println("Сколько пакетиков положить?");
                     feedEvenOrOddPussies(true, scan.nextInt());
+                    break;
                 case 4 :
                     System.out.println("Сколько пакетиков положить?");
+                    break;
                 case 0 :
                     return;
-
             }
         }
 
@@ -96,19 +99,16 @@ public class PussyFeeder {
 
     private static void feedOnePussy(int pussyIndex, int amountOfFeed) {
         if((pussiesFeeders[pussyIndex] + amountOfFeed) < 0){
-            System.out.println("Нельзя сделать меньше, чем ничего");
-            System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
+            System.out.println("Нельзя сделать меньше, чем ничего. В миске пусто.");
+            printAllThePussiesFood();
             return;
         }
         if ((pussiesFeeders[pussyIndex] + amountOfFeed) > 7){
-            System.out.println("А киска-то не лопнет? Нельзя положить больше 7 пакетиков в одну кормушку");
-            //Может с этим что-то сделать? v
-            System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
+            System.out.println("А киска-то не лопнет? Нельзя положить больше 7 пакетиков в одну кормушку.");
+            printAllThePussiesFood();
             return;
         }
         pussiesFeeders[pussyIndex] += amountOfFeed;
-//        System.out.println(food[pussyIndex]);
-        System.out.println("Сейчас в кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков");
-
-    }//ну как-то так примерно, посмотреть еще
+        printAllThePussiesFood();
+    }
 }
