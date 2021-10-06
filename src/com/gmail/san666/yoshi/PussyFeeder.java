@@ -27,6 +27,7 @@ import java.util.Scanner;
  */
 //TODO написать тест к классу
 public class PussyFeeder {
+    //TODO размерность массива задает пользователь (до 4)
     static String [] pussiesNames = new String[8]; //{"Коко","Мими","Широ","Лаки","Кики","Момо","Люси","Куро"};
     static int [] pussiesFeeders = new int[8];
     static Scanner scan = new Scanner(System.in);
@@ -34,7 +35,13 @@ public class PussyFeeder {
     public static void main(String[] args) {
         menu();
     }
-//TODO пункт "создать кошек"
+
+    /**
+     * В методе "Меню" находится бесконечный цикл
+     * Работа метода завершается, если пользователь при выводе меню нажимает "0"
+     * Через switch реализованы пункты меню
+     *
+     */
     private static void menu() {
         while (true){
             System.out.println("Меню:" + '\n'
@@ -44,41 +51,40 @@ public class PussyFeeder {
                     + "4. Покормить всех котов" + '\n'
                     + "5. Покормить только четных котов" + '\n'
                     + "6. Покормить только нечетных котов" + '\n'
-                    + "7. Создать новую кошку" + '\n'
                     + "0. Выход");
             switch (scan.nextInt()){
                 case 1 :
                     createAllPussies();
+                    System.out.println(printAllPussies());
+                    break;
                 case 2 :
                     System.out.println("Как назовём кошку?");
                     createNewPussy(scan.next());
+                    System.out.println(printAllPussies());
+                    break;
                 case 3 :
                     System.out.println("Кого будем кормить?");
-                    printAllPussies();
+                    System.out.println(printAllPussies());
                     int pussyIndex = scan.nextInt();
-                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+                    printAmountQuestion();
                     int foodCounter = scan.nextInt();
                     feedOnePussy(pussyIndex,foodCounter);
                     printAllThePussiesFood();
                     break;
                 case 4 :
-                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+                    printAmountQuestion();
                     feedAllThePussies(scan.nextInt());
                     printAllThePussiesFood();
                     break;
                 case 5:
-                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+                    printAmountQuestion();
                     feedEvenOrOddPussies(true, scan.nextInt());
                     printAllThePussiesFood();
                     break;
                 case 6 :
-                    System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+                    printAmountQuestion();
                     feedEvenOrOddPussies(false, scan.nextInt());
                     printAllThePussiesFood();
-                    break;
-                case 7 :
-                    System.out.println("Как зовут кошку?");
-                    createNewPussy(scan.next());
                     break;
                 case 0 :
                     return;
@@ -86,16 +92,22 @@ public class PussyFeeder {
         }
     }
 
+    //Есть ли вообще "предпочтение" в каком порядке лучше располагать методы?
+
+    //Имеет ли вообще смысл выносить одну строчку в отдельный метод?
+    public static void printAmountQuestion() {
+        System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
+    }
+
     //TODO добавить метод, который создает новую кошку
-    private static void createNewPussy(String pussyName) {
-        //Что в итоге сделать то? Добавить не пустую строчку?
+    public static void createNewPussy(String pussyName) {
         /*
-        В общем, не очень понятно каким образом реализовать. Ладно б это эррайлист был.
         Тут или инициализировать всех разом, или делать проверку при кормлении
-        Сразу говорить пользователю сколько мест есть и сколько заняты. Это если по одному.
+        Сразу говорить пользователю сколько мест есть и сколько заняты? Это если по одному.
         Можно сделать два пункта. Всех и одну создать, а там посмотреть
          */
         int cat = 0;
+        //TODO поменять на for
         while(cat < pussiesNames.length){
             if (pussiesNames[cat] != null){
                 cat++;
@@ -106,32 +118,46 @@ public class PussyFeeder {
             }
         }
         System.out.println("Кошек слишком много");
-    }//додумать
+    }
 
-    private static void createAllPussies(){
-        for (int i = 0; i < pussiesNames.length; i++) {
-            System.out.println("Как назовём " + i + "кошку?");
+    public static void createAllPussies(){
+        System.out.println("Введи количество кошек (не больше 8)");
+        int pussiesCount = 0;
+        do {
+            pussiesCount = scan.nextInt();
+        } while (pussiesCount > 0 && pussiesCount < 5); //что это и зачем и поменять количесто кошек и нмера
+
+        for (int i = 0; i < pussiesCount; i++) {
+            System.out.println("Как назовём " + i + " кошку?");
             pussiesNames[i] = scan.next();
         }
     }
 
-
-    public static void printAllPussies() {
+    public static String printAllPussies() {
+        String result = "";
         for (int i = 0; i < pussiesFeeders.length; i++) {
-            System.out.println(i + " - " + pussiesNames[i]);
+            result = result + i + " - "  + pussiesNames[i] + '\n';
         }
+        return  result;
     }
 
     //TODO отрефакторить так, чтобы методы возвращали String
-    private static void printAllThePussiesFood() {
+    //TODO печатать тоько кошек с не пустыми именами
+    public static void printAllThePussiesFood() {
         System.out.println();
         for (int i = 0; i < pussiesNames.length; i++) {
             System.out.println("В кормушке " + pussiesNames[i] + " " + pussiesFeeders[i] + " пакетиков еды");
+//            System.out.println(printPussyFood(i));
         }
         System.out.println();
     }
-// TODO Добавить джава док комментарии к каждому методу(по поводу? работы?), сделать паблик
-    private static void feedEvenOrOddPussies(boolean isEven, int foodCounter) {
+
+//    public static String printPussyFood(int pussyIndex){
+//        return "В кормушке " + pussiesNames[pussyIndex] + " " + pussiesFeeders[pussyIndex] + " пакетиков еды";
+//    }
+
+// TODO Добавить джава док комментарии к каждому методу, сделать паблик
+    public static void feedEvenOrOddPussies(boolean isEven, int foodCounter) {
         if (isEven){
             for (int i = 0; i < pussiesNames.length; i+=2) {
                 feedOnePussy(i,foodCounter);
@@ -162,4 +188,14 @@ public class PussyFeeder {
         }
         pussiesFeeders[pussyIndex] += amountOfFeed;
     }
+//    public static String feedOnePussy(int pussyIndex, int amountOfFeed) { неа
+//        if ((pussiesFeeders[pussyIndex] + amountOfFeed) < 0) {
+//            return "Нельзя сделать меньше, чем ничего. В миске пусто.";
+//        }
+//        if ((pussiesFeeders[pussyIndex] + amountOfFeed) > 7) {
+//            return "А киска-то не лопнет? Нельзя положить больше 7 пакетиков в одну кормушку." + '\n'
+//                    + "Не удалось покормить " + pussiesNames[pussyIndex];
+//        }
+//        pussiesFeeders[pussyIndex] += amountOfFeed;
+//    }
 }
