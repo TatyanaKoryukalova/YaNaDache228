@@ -106,17 +106,26 @@ public class PussyFeeder {
         Сразу говорить пользователю сколько мест есть и сколько заняты? Это если по одному.
         Можно сделать два пункта. Всех и одну создать, а там посмотреть
          */
-        int cat = 0;
-        //TODO поменять на for
-        while(cat < pussiesNames.length){
-            if (pussiesNames[cat] != null){
-                cat++;
-            } else {
-                pussiesNames[cat] = pussyName;
-                System.out.println("Новую кошку под номером " + cat + " зовут " + pussyName);
+        for (int i = 0; i < pussyName.length(); i++) {
+            if (pussiesNames[1] != null){
+
+             } else {
+                pussiesNames[i] = pussyName;
+                System.out.println("Новую кошку под номером " + i + " зовут " + pussyName);
                 return;
             }
         }
+//        int cat = 0;
+//        //TODO поменять на for
+//        while(cat < pussiesNames.length){
+//            if (pussiesNames[cat] != null){
+//                cat++;
+//            } else {
+//                pussiesNames[cat] = pussyName;
+//                System.out.println("Новую кошку под номером " + cat + " зовут " + pussyName);
+//                return;
+//            }
+//        }
         System.out.println("Кошек слишком много");
     }
 

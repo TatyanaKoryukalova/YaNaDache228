@@ -34,7 +34,7 @@ public class ExceptionsHomework {
         catch (WrongPasswordException e){
             System.out.println("Wrong pass");
         }
-        catch (ConfirmDoesNotMatch e){
+        catch (ConfirmDoesNotMatchException e){
             System.out.println("Wrong confirm");
         }
         catch (Exception e){
@@ -59,7 +59,7 @@ public class ExceptionsHomework {
     }
 
     public static boolean verificationInput(String login, String password, String confirmPassword)
-            throws WrongPasswordException, WrongLoginException, ConfirmDoesNotMatch {
+            throws WrongPasswordException, WrongLoginException, ConfirmDoesNotMatchException {
         if (!login.matches("[a-zA-Z]+\\.?")){
             throw new WrongLoginException("There is wrong symbols is the input");
         }
@@ -67,8 +67,8 @@ public class ExceptionsHomework {
             throw new WrongPasswordException("There is wrong symbols is the input");
         }
         if (!confirmPassword.equals(password)){
-            throw new ConfirmDoesNotMatch("Confirm password does not match");
+            throw new ConfirmDoesNotMatchException("Confirm password does not match");
         }
-        return  true; //ну вот тут еще подумать чего возвращать. отдельную переменную завести?
+        return  true;
     }
 }
