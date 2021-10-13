@@ -7,9 +7,9 @@ package com.gmail.san666.yoshi.oop;
  * V - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен в
  *          озвращать boolean.
  * V - 3. Написать метод salaryValidate, который вызывает метод из пункта 2 и выкидывает исключения, если проверка не проходит.
- * 4. Написать класс Company, который хранит массив person и позволяет
+ * V - 4. Написать класс Company, который хранит массив person и позволяет
  *      добавлять новых person (методы должны называться типа "принять на работу" и "уволить").
- * 5. Класс Company должен иметь метод, который напечатает всех работников. У Company должен быть field name.
+ * V - 5. Класс Company должен иметь метод, который напечатает всех работников. У Company должен быть field name.
  */
 
 public class Person {
@@ -24,7 +24,7 @@ public class Person {
     public boolean isSalaryCorrect(){
         return salary >= age;
     }
-
+//TODO сделать так, чтобы при установке неправильной зп выбрасывалось исключение (наверное это где-то в сеттере)
     public void salaryValidate() throws salaryInvalidException{
         if (!isSalaryCorrect()){
             throw new salaryInvalidException("Too little salary");
@@ -66,25 +66,3 @@ public class Person {
     }
     // endregion
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

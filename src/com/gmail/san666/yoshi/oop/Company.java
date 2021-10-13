@@ -9,6 +9,7 @@ public class Company {
     public void hirePerson(Person newStaff){
         staff = Arrays.copyOf(staff, staff.length+1);
         staff[staff.length-1] = newStaff;
+        newStaff.setCompanyName(this.getName());
 
     }
 //
@@ -22,6 +23,7 @@ public class Company {
             }
         }
         staff = newStaffArray;
+        firedStaff.setCompanyName(null);
     }
 
     public void printAllStuff(){
