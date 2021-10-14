@@ -12,11 +12,11 @@ public class Company {
         newStaff.setCompanyName(this.getName());
 
     }
-//
+
     public void firePerson(Person firedStaff){
         Person[] newStaffArray = new Person[staff.length-1];
         int counter = 0;
-        for (Person person : staff) {
+        for (Person person : staff) {       //В массиве вида arr[i] i-й элемент представлен как ссылка на объект или как сам объект?
             if (person != firedStaff) {
                 newStaffArray[counter] = person;
                 counter++;
@@ -51,6 +51,9 @@ public class Company {
         this.name = name;
     }
 
+    public Person getElement(int index){
+        return staff[index];
+    }
 
     //endregion
 

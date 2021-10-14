@@ -13,20 +13,23 @@ public class Application {
         bob.setAge(13);
 //        bob.setCompanyName("Xyz"); //Важно!! Статические переменные класса меняются для всех экземпляров класса !!!
                                     // Т.е. принадлежат не экземпляру, а родительскому классу. Поэтому и через this не обращается
-        bob.setSalary(11);
-        System.out.println(bob.getSalary());
+//        bob.setSalary(15);
+//        System.out.println(bob.getSalary());
 //
-//        Company google = new Company();
-//        google.setStaff(new Person[]{bob});
-//        google.setName("Google");
-//        google.hirePerson(alex);
-//        google.printAllStuff();
-//        google.firePerson(bob);
-//        System.out.println();
-//        google.printAllStuff();
-//
+        Company google = new Company();
+        google.setStaff(new Person[]{bob});
+        google.setName("Google");
+        google.hirePerson(alex);
+        google.printAllStuff();
+        google.firePerson(bob);
+        System.out.println();
+        google.printAllStuff();
 
-//        System.out.println(alex.getCompanyName());
-//        System.out.println(bob.getCompanyName());
+
+        System.out.println(alex.getCompanyName());
+        System.out.println(bob.getCompanyName());
+
+
+
     }
 }

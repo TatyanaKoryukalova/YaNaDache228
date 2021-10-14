@@ -2,7 +2,7 @@ package com.gmail.san666.yoshi.oop;
 
 /**
  * TODO
- * V - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName.
+ * V - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName. ____Попробовали - шляпа
  * V(getter there) -  Должен быть статичный метод, который работает с этим полем.
  * V - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен в
  *          озвращать boolean.
@@ -21,12 +21,12 @@ public class Person {
     public Person() {
     }
 
-    public boolean isSalaryCorrect(){
+    public boolean isSalaryCorrect(double salary){
         return salary >= age;
     }
-//TODO сделать так, чтобы при установке неправильной зп выбрасывалось исключение (наверное это где-то в сеттере)
-    public void salaryValidate() throws salaryInvalidException{
-        if (!isSalaryCorrect()){
+
+    public void salaryValidate(double salary) throws salaryInvalidException{
+        if (!isSalaryCorrect(salary)){
             throw new salaryInvalidException("Too little salary");
         }
     }
@@ -54,13 +54,19 @@ public class Person {
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        try{
+            salaryValidate(salary);
+            this.salary = salary;
+        }
+        catch (salaryInvalidException e){
+            System.out.println("Зарплата не может быть меньше возраста");
+        }
     }
 
     public String getCompanyName(){
         return companyName;
     }
-// TODO убрать сам метод и ссылки на него
+
     public void setCompanyName(String companyName){
         this.companyName = companyName;
     }

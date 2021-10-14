@@ -99,7 +99,12 @@ public class PussyFeeder {
         System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
     }
 
-    //TODO добавить метод, который создает новую кошку
+    /**
+     * В данном случае мы добавляем кошку в массив с четко заданной размерностью.
+     * В методе ниже мы проверяем наличие свободных ячеек, в первую такую кладем кошку
+     * Подразумевается что массив заполняется с начала без пропусков
+     *
+     */
     public static void createNewPussy(String pussyName) {
         /*
         Тут или инициализировать всех разом, или делать проверку при кормлении
@@ -107,25 +112,13 @@ public class PussyFeeder {
         Можно сделать два пункта. Всех и одну создать, а там посмотреть
          */
         for (int i = 0; i < pussyName.length(); i++) {
-            if (pussiesNames[1] != null){
-
-             } else {
+            if (pussiesNames[1] == null){
                 pussiesNames[i] = pussyName;
                 System.out.println("Новую кошку под номером " + i + " зовут " + pussyName);
                 return;
             }
         }
-//        int cat = 0;
-//        //TODO поменять на for
-//        while(cat < pussiesNames.length){
-//            if (pussiesNames[cat] != null){
-//                cat++;
-//            } else {
-//                pussiesNames[cat] = pussyName;
-//                System.out.println("Новую кошку под номером " + cat + " зовут " + pussyName);
-//                return;
-//            }
-//        }
+
         System.out.println("Кошек слишком много");
     }
 
