@@ -11,8 +11,7 @@ public class Application {
         Person bob = new Person();
         bob.setName("Bob");
         bob.setAge(13);
-//        bob.setCompanyName("Xyz"); //Важно!! Статические переменные класса меняются для всех экземпляров класса !!!
-                                    // Т.е. принадлежат не экземпляру, а родительскому классу. Поэтому и через this не обращается
+
 //        bob.setSalary(15);
 //        System.out.println(bob.getSalary());
 //
@@ -28,7 +27,6 @@ public class Application {
 
         System.out.println(alex.getCompanyName());
         System.out.println(bob.getCompanyName());
-
 
 
     }

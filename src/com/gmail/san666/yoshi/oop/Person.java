@@ -4,11 +4,11 @@ package com.gmail.san666.yoshi.oop;
  * TODO
  * V - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName. ____Попробовали - шляпа
  * V(getter there) -  Должен быть статичный метод, который работает с этим полем.
- * V - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен в
- *          озвращать boolean.
+ * V - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен
+ * возвращать boolean.
  * V - 3. Написать метод salaryValidate, который вызывает метод из пункта 2 и выкидывает исключения, если проверка не проходит.
  * V - 4. Написать класс Company, который хранит массив person и позволяет
- *      добавлять новых person (методы должны называться типа "принять на работу" и "уволить").
+ * добавлять новых person (методы должны называться типа "принять на работу" и "уволить").
  * V - 5. Класс Company должен иметь метод, который напечатает всех работников. У Company должен быть field name.
  */
 
@@ -21,12 +21,12 @@ public class Person {
     public Person() {
     }
 
-    public boolean isSalaryCorrect(double salary){
+    public boolean isSalaryCorrect(double salary) {
         return salary >= age;
     }
 
-    public void salaryValidate(double salary) throws salaryInvalidException{
-        if (!isSalaryCorrect(salary)){
+    public void salaryValidate(double salary) throws salaryInvalidException {
+        if (!isSalaryCorrect(salary)) {
             throw new salaryInvalidException("Too little salary");
         }
     }
@@ -54,20 +54,19 @@ public class Person {
     }
 
     public void setSalary(double salary) {
-        try{
+        try {
             salaryValidate(salary);
             this.salary = salary;
-        }
-        catch (salaryInvalidException e){
+        } catch (salaryInvalidException e) {
             System.out.println("Зарплата не может быть меньше возраста");
         }
     }
 
-    public String getCompanyName(){
+    public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName){
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
     // endregion
