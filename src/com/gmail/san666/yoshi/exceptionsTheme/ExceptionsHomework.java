@@ -1,4 +1,4 @@
-package com.gmail.san666.yoshi;
+package com.gmail.san666.yoshi.exceptionsTheme;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ import java.util.Scanner;
  * input.matches ("[a-zA-Z]+\\.?");
  */
 public class ExceptionsHomework {
-    static String login;//стоит ли оббъявлять здесь? или все таки где-то в мэине
+    static String login;
     static String password;
     static String confirmPassword;
 
@@ -29,20 +29,20 @@ public class ExceptionsHomework {
              isLoginDataValid = verificationInput(login,password,confirmPassword);
         }
         catch (WrongLoginException e){
-            System.out.println("Wrong login");
+            System.out.println("Введенный логин содержит недопустимые символы либо слишком длинный");
         }
         catch (WrongPasswordException e){
-            System.out.println("Wrong pass");
+            System.out.println("Введенный пароль содержит недопустимые символы либо слишком длинный");
         }
         catch (ConfirmDoesNotMatchException e){
-            System.out.println("Wrong confirm");
+            System.out.println("Пароль и подтверждение не совпадают");
         }
         catch (Exception e){
-            System.out.println("You get " + e.toString());
+            System.out.println("Вы получили следующую ошибку: " + e.toString());
         }
         finally {
             if (isLoginDataValid){
-                System.out.println("Valid login & password");
+                System.out.println("Логин и пароль подходят под требования");
             }
         }
 
@@ -50,20 +50,20 @@ public class ExceptionsHomework {
 
     public static void inputLoginData(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your username");
+        System.out.println("Введите логин:");
         login = scan.next();
-        System.out.println("Enter your password");
+        System.out.println("Введите пароль:");
         password = scan.next();
-        System.out.println("Confirm your password");
+        System.out.println("Подтвердите пароль:");
         confirmPassword = scan.next();
     }
 
     public static boolean verificationInput(String login, String password, String confirmPassword)
             throws WrongPasswordException, WrongLoginException, ConfirmDoesNotMatchException {
-        if (!login.matches("[a-zA-Z]+\\.?")){
+        if (!login.matches("[a-zA-Z]+\\.?") || (login.length() >= 20)){
             throw new WrongLoginException("There is wrong symbols is the input");
         }
-        if (!password.matches("[a-zA-Z]+\\.?")){
+        if (!password.matches("[a-zA-Z]+\\.?") || password.length() >= 20){
             throw new WrongPasswordException("There is wrong symbols is the input");
         }
         if (!confirmPassword.equals(password)){

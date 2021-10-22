@@ -1,4 +1,4 @@
-package com.gmail.san666.yoshi;
+package com.gmail.san666.yoshi.exceptionsTheme;
 
 import java.util.Scanner;
 
@@ -27,8 +27,7 @@ public class ExceptionsLesson {
     private  static String inputString(){
         System.out.println("Введите целое число");
         Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.nextLine();
-        return inputString;
+        return scanner.nextLine();
     }
 
     private static int parseNumber (String inputString) throws DoesNotContainsNumberException, NumberIsTooLongException{
@@ -46,7 +45,6 @@ public class ExceptionsLesson {
 //            throw new RuntimeException();
 //        }
 
-        int parseNumber = Integer.parseInt(inputString);
-        return parseNumber;
+        return Integer.parseInt(inputString);
     }
 }

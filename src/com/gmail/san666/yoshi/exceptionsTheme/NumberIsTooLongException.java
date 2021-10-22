@@ -1,4 +1,4 @@
-package com.gmail.san666.yoshi;
+package com.gmail.san666.yoshi.exceptionsTheme;
 
 public class NumberIsTooLongException extends Exception {
     public NumberIsTooLongException(){
