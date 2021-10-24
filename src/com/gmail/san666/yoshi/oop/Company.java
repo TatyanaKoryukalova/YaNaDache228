@@ -6,6 +6,15 @@ public class Company {
     private Person[] staff;
     private String name;
 
+    public Company(){
+
+    }
+
+    public Company(String name, Person[] staff){
+        this.name = name;
+        this.staff = staff;
+    }
+
     public void hirePerson(Person newStaff) {
         staff = Arrays.copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newStaff;

@@ -28,7 +28,7 @@ public class GameGuessNumber {
             userNumber = scan.nextInt();
             if (userNumber == random){
                 System.out.println("Вы угадали с " + tryingCounter + " попытки!");
-                return;
+                return; // 
             }
             if(userNumber>random){
                 System.out.println("Ваше число больше загаданного");
@@ -39,5 +39,5 @@ public class GameGuessNumber {
             tryingCounter++;
         }
         System.out.println('\n' + "Вы не угадали." + '\n' + "Загаданное число: " + random);
-    }
+    } //todo добавть вывот числа в итоге. так вот же оно
 }
