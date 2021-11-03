@@ -28,17 +28,8 @@ public class ExceptionsHomework {
         try{
              isLoginDataValid = verificationInput(login,password,confirmPassword);
         }
-        catch (WrongLoginException e){
-            System.out.println("Введенный логин содержит недопустимые символы либо слишком длинный");
-        }
-        catch (WrongPasswordException e){
-            System.out.println("Введенный пароль содержит недопустимые символы либо слишком длинный");
-        }
-        catch (ConfirmDoesNotMatchException e){
-            System.out.println("Пароль и подтверждение не совпадают");
-        }
-        catch (Exception e){
-            System.out.println("Вы получили следующую ошибку: " + e.toString());
+        catch (WrongLoginException | WrongPasswordException e){
+            System.out.println(e.getMessage());
         }
         finally {
             if (isLoginDataValid){
@@ -59,15 +50,21 @@ public class ExceptionsHomework {
     }
 
     public static boolean verificationInput(String login, String password, String confirmPassword)
-            throws WrongPasswordException, WrongLoginException, ConfirmDoesNotMatchException {
-        if (!login.matches("[a-zA-Z]+\\.?") || (login.length() >= 20)){
-            throw new WrongLoginException("There is wrong symbols is the input");
+            throws WrongPasswordException, WrongLoginException {
+        if (!login.matches("[a-zA-Z]+\\.?")){
+            throw new WrongLoginException("Логин содержит недопустимые символы");
         }
-        if (!password.matches("[a-zA-Z]+\\.?") || password.length() >= 20){
-            throw new WrongPasswordException("There is wrong symbols is the input");
+        if (login.length() >= 20){
+            throw new WrongLoginException("Логин не может быть длиннее 20 символов");
+        }
+        if (!password.matches("[a-zA-Z]+\\.?")){
+            throw new WrongPasswordException("Пароль содержит недопустимые символы");
+        }
+        if (password.length() >= 20){
+            throw new WrongPasswordException("Пароль не может быть длиннее 20 символов");
         }
         if (!confirmPassword.equals(password)){
-            throw new ConfirmDoesNotMatchException("Confirm password does not match");
+            throw new WrongPasswordException("Подтверждение и пароль не совпадают");
         }
         return  true;
     }
