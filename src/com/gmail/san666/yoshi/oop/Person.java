@@ -26,12 +26,12 @@ public class Person {
         this.age = age;
     }
 
-    public boolean isSalaryCorrect(double salary) {
+    public boolean isSalaryGreaterThanAge(double salary) {
         return salary >= age;
     }
 
     public void salaryValidate(double salary) throws salaryInvalidException {
-        if (!isSalaryCorrect(salary)) {
+        if (!isSalaryGreaterThanAge(salary)) {
             throw new salaryInvalidException("Too little salary");
         }
     }

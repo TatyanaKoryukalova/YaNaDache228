@@ -13,7 +13,7 @@ import java.util.Scanner;
  * второй принимает сообщение исключения и передает его в конструктор класса Exception.
  * Обработка исключений проводится внутри метода. Используем multi-catch block.
  * Метод возвращает true, если значения верны или false в другом случае
- *
+ * <p>
  * Для проверки строки, содержит ли она только латинские символы, можно использовать регулярное выражение:
  * input.matches ("[a-zA-Z]+\\.?");
  */
@@ -25,21 +25,19 @@ public class ExceptionsHomework {
     public static void main(String[] args) {
         inputLoginData();
         boolean isLoginDataValid = false;
-        try{
-             isLoginDataValid = verificationInput(login,password,confirmPassword);
-        }
-        catch (WrongLoginException | WrongPasswordException e){
+        try {
+            isLoginDataValid = verificationInput(login, password, confirmPassword);
+        } catch (WrongLoginException | WrongPasswordException e) {
             System.out.println(e.getMessage());
-        }
-        finally {
-            if (isLoginDataValid){
+        } finally {
+            if (isLoginDataValid) {
                 System.out.println("Логин и пароль подходят под требования");
             }
         }
 
     }
 
-    public static void inputLoginData(){
+    public static void inputLoginData() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите логин:");
         login = scan.next();
@@ -51,21 +49,21 @@ public class ExceptionsHomework {
 
     public static boolean verificationInput(String login, String password, String confirmPassword)
             throws WrongPasswordException, WrongLoginException {
-        if (!login.matches("[a-zA-Z]+\\.?")){
+        if (!login.matches("[a-zA-Z]+\\.?")) {
             throw new WrongLoginException("Логин содержит недопустимые символы");
         }
-        if (login.length() >= 20){
+        if (login.length() >= 20) {
             throw new WrongLoginException("Логин не может быть длиннее 20 символов");
         }
-        if (!password.matches("[a-zA-Z]+\\.?")){
+        if (!password.matches("[a-zA-Z]+\\.?")) {
             throw new WrongPasswordException("Пароль содержит недопустимые символы");
         }
-        if (password.length() >= 20){
+        if (password.length() >= 20) {
             throw new WrongPasswordException("Пароль не может быть длиннее 20 символов");
         }
-        if (!confirmPassword.equals(password)){
+        if (!confirmPassword.equals(password)) {
             throw new WrongPasswordException("Подтверждение и пароль не совпадают");
         }
-        return  true;
+        return true;
     }
 }

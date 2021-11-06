@@ -6,50 +6,57 @@ public class Company {
     private Person[] staff;
     private String name;
 
+    //region constructors
     public Company(){
 
     }
 
-    public Company(String name, Person[] staff){
+    public Company(String name){
         this.name = name;
-        this.staff = staff;
     }
+    //endregion
 
-    public void hirePerson(Person newStaff) {
+    public void hirePerson(Person newWorker,double salary) {
         staff = Arrays.copyOf(staff, staff.length + 1);
-        staff[staff.length - 1] = newStaff;
-        newStaff.setCompanyName(this.getName());
-
+        staff[staff.length - 1] = newWorker;
+        newWorker.setCompanyName(this.getName());
+        newWorker.setSalary(salary);
     }
 
-    public void firePerson(Person firedStaff) {
+    public void firePerson(Person firedWorker) {
         Person[] newStaffArray = new Person[staff.length - 1];
         int counter = 0;
         for (int i = 0; i < staff.length; i++) {
             Person person = staff[i];
-            if (person != firedStaff) {
+            if (person != firedWorker) {
                 newStaffArray[counter] = person;
                 counter++;
             }
         }
         staff = newStaffArray;
-        firedStaff.setCompanyName(null);
+        firedWorker.setCompanyName(null);
+        firedWorker.setSalary(0);
     }
-//todo вернуть String со всеми именами(+ др. свойства), метод, к-й печатать
-    public void printAllStuff() {
-        for (Person stuff : staff) {
-            System.out.println(stuff.getName());
+    public String listAllStuffNames() {
+        String staffNamesList = "";
+        for (Person worker : staff) {
+            staffNamesList = staffNamesList + worker.getName() + '\n';
         }
+        return staffNamesList;
     }
 
+    public String listAllStuffNamesAndAge() {
+        String staffNamesList = "";
+        for (Person worker : staff) {
+            staffNamesList = staffNamesList + worker.getName() + ", "
+                    + worker.getAge() + "y.o." + '\n';
+        }
+        return staffNamesList;
+    }
 
     //region getters/setters
     public Person[] getStaff() {
         return staff;
-    }
-
-    public void setStaff(Person[] staff) {
-        this.staff = staff;
     }
 
     public String getName() {
