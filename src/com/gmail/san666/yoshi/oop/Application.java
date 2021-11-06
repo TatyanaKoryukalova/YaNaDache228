@@ -15,7 +15,7 @@ public class Application {
         google.setName("Google");
         google.hirePerson(bob, 500000);
         google.hirePerson(alex, 30000);
-        google.listAllStuffNames();
+        System.out.println(google.listAllStuffNames());
         google.firePerson(bob);
         System.out.println();
         System.out.println(google.listAllStuffNames());

@@ -25,7 +25,7 @@ public class Person {
         this.name = name;
         this.age = age;
     }
-
+//todo подкрутить случаи с зп, когда зп = 0. Установлена или нет зп
     public boolean isSalaryGreaterThanAge(double salary) {
         return salary >= age;
     }

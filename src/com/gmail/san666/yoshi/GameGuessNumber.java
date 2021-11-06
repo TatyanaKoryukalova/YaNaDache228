@@ -19,15 +19,15 @@ public class GameGuessNumber {
         int high = 100;
         int random = r.nextInt(high + 1);
         Scanner scan = new Scanner(System.in);
-        int tryingCounter = 1; //Номер попытки пользователя
+        int attemptsCounter = 1; //Номер попытки пользователя
         int userNumber;
 
         for (int i = 0; i < 10; i++) {
             System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
-            System.out.println("Попытка: " + tryingCounter);
+            System.out.println("Попытка: " + attemptsCounter);
             userNumber = scan.nextInt();
             if (userNumber == random) {
-                System.out.println("Вы угадали с " + tryingCounter + " попытки!" +
+                System.out.println("Вы угадали с " + attemptsCounter + " попытки!" +
                         '\n' + "Загаданное число: " + random);
                 return;
             }
@@ -36,7 +36,7 @@ public class GameGuessNumber {
             } else {
                 System.out.println("Ваше число меньше загаданного");
             }
-            tryingCounter++;
+            attemptsCounter++;
         }
         System.out.println('\n' + "Вы не угадали." + '\n' + "Загаданное число: " + random);
     }

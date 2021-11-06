@@ -2,8 +2,10 @@ package com.gmail.san666.yoshi.oop;
 
 import java.util.Arrays;
 
+import static java.util.Arrays.*;
+
 public class Company {
-    private Person[] staff;
+    private Person[] staff = new Person[0];
     private String name;
 
     //region constructors
@@ -17,7 +19,7 @@ public class Company {
     //endregion
 
     public void hirePerson(Person newWorker,double salary) {
-        staff = Arrays.copyOf(staff, staff.length + 1);
+        staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
         newWorker.setCompanyName(this.getName());
         newWorker.setSalary(salary);
