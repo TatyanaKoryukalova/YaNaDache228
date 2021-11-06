@@ -17,27 +17,27 @@ public class GameGuessNumber {
     private static void gameGuessNumber() {
         Random r = new Random();
         int high = 100;
-        int random = r.nextInt(high+1);
+        int random = r.nextInt(high + 1);
         Scanner scan = new Scanner(System.in);
         int tryingCounter = 1; //Номер попытки пользователя
-        int userNumber = 0;
+        int userNumber;
 
         for (int i = 0; i < 10; i++) {
             System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
-            System.out.println("Попытка: "+tryingCounter);
+            System.out.println("Попытка: " + tryingCounter);
             userNumber = scan.nextInt();
-            if (userNumber == random){
-                System.out.println("Вы угадали с " + tryingCounter + " попытки!");
-                return; // 
+            if (userNumber == random) {
+                System.out.println("Вы угадали с " + tryingCounter + " попытки!" +
+                        '\n' + "Загаданное число: " + random);
+                return;
             }
-            if(userNumber>random){
+            if (userNumber > random) {
                 System.out.println("Ваше число больше загаданного");
-                continue;
-            } else{
+            } else {
                 System.out.println("Ваше число меньше загаданного");
             }
             tryingCounter++;
         }
         System.out.println('\n' + "Вы не угадали." + '\n' + "Загаданное число: " + random);
-    } //todo добавть вывот числа в итоге. так вот же оно
+    }
 }
