@@ -15,10 +15,10 @@ public class Application {
         google.setName("Google");
         google.hirePerson(bob, 500000);
         google.hirePerson(alex, 30000);
-        System.out.println(google.listAllStuffNames());
+        google.printAllStuffNamesAndAge();
         google.firePerson(bob);
         System.out.println();
-        System.out.println(google.listAllStuffNames());
+        google.printAllStuffNames();
 
         System.out.println(alex.getCompanyName());
         System.out.println(bob.getCompanyName());

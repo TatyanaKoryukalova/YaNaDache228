@@ -28,8 +28,7 @@ public class Company {
     public void firePerson(Person firedWorker) {
         Person[] newStaffArray = new Person[staff.length - 1];
         int counter = 0;
-        for (int i = 0; i < staff.length; i++) {
-            Person person = staff[i];
+        for (Person person : staff) {
             if (person != firedWorker) {
                 newStaffArray[counter] = person;
                 counter++;
@@ -39,21 +38,21 @@ public class Company {
         firedWorker.setCompanyName(null);
         firedWorker.setSalary(0);
     }
-    public String listAllStuffNames() {
+    public void printAllStuffNames() {
         String staffNamesList = "";
         for (Person worker : staff) {
             staffNamesList = staffNamesList + worker.getName() + '\n';
         }
-        return staffNamesList;
+        System.out.println(staffNamesList);
     }
 
-    public String listAllStuffNamesAndAge() {
-        String staffNamesList = "";
+    public void printAllStuffNamesAndAge() {
+        String staffNamesAndAgeList = "";
         for (Person worker : staff) {
-            staffNamesList = staffNamesList + worker.getName() + ", "
-                    + worker.getAge() + "y.o." + '\n';
+            staffNamesAndAgeList = staffNamesAndAgeList + worker.getName() + ", "
+                    + worker.getAge() + " y.o." + '\n';
         }
-        return staffNamesList;
+        System.out.println(staffNamesAndAgeList);
     }
 
     //region getters/setters

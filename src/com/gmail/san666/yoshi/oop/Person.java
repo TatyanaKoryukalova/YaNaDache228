@@ -2,14 +2,14 @@ package com.gmail.san666.yoshi.oop;
 
 /**
  * TODO
- * V - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName. ____Попробовали - шляпа
- * V(getter there) -  Должен быть статичный метод, который работает с этим полем.
- * V - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен
+ * - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName.
+ * -  Должен быть статичный метод, который работает с этим полем.
+ * - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен
  * возвращать boolean.
- * V - 3. Написать метод salaryValidate, который вызывает метод из пункта 2 и выкидывает исключения, если проверка не проходит.
- * V - 4. Написать класс Company, который хранит массив person и позволяет
+ * - 3. Написать метод salaryValidate, который вызывает метод из пункта 2 и выкидывает исключения, если проверка не проходит.
+ * - 4. Написать класс Company, который хранит массив person и позволяет
  * добавлять новых person (методы должны называться типа "принять на работу" и "уволить").
- * V - 5. Класс Company должен иметь метод, который напечатает всех работников. У Company должен быть field name.
+ * - 5. Класс Company должен иметь метод, который напечатает всех работников. У Company должен быть field name.
  */
 
 public class Person {
@@ -20,19 +20,18 @@ public class Person {
 
     public Person() {
     }
-
-    public Person(String name, int age){
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
-//todo подкрутить случаи с зп, когда зп = 0. Установлена или нет зп
+
     public boolean isSalaryGreaterThanAge(double salary) {
         return salary >= age;
     }
 
-    public void salaryValidate(double salary) throws salaryInvalidException {
-        if (!isSalaryGreaterThanAge(salary)) {
-            throw new salaryInvalidException("Too little salary");
+    public void salaryValidate(double salary) throws salaryLessThanAgeException {
+        if (!isSalaryGreaterThanAge(salary)) { //если тут добавить 0, то это будет костыль
+            throw new salaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
 
@@ -59,12 +58,7 @@ public class Person {
     }
 
     public void setSalary(double salary) {
-        try {
-            salaryValidate(salary);
-            this.salary = salary;
-        } catch (salaryInvalidException e) {
-            System.out.println("Зарплата не может быть меньше возраста");
-        }
+        this.salary = salary;
     }
 
     public String getCompanyName() {

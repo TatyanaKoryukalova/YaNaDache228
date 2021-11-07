@@ -1,4 +1,4 @@
-package com.gmail.san666.yoshi;
+package com.gmail.san666.yoshi.basicJavaСoncepts;
 
 import java.util.Scanner;
 
