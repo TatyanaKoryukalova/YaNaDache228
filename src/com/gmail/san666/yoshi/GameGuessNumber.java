@@ -19,24 +19,23 @@ public class GameGuessNumber {
         int high = 100;
         int random = r.nextInt(high + 1);
         Scanner scan = new Scanner(System.in);
-        int attemptsCounter = 1; //Номер попытки пользователя
         int userNumber;
 
         for (int i = 0; i < 10; i++) {
             System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
-            System.out.println("Попытка: " + attemptsCounter);
+            System.out.println("Попытка: " + (i+1));
             userNumber = scan.nextInt();
-            if (userNumber == random) {
-                System.out.println("Вы угадали с " + attemptsCounter + " попытки!" +
-                        '\n' + "Загаданное число: " + random);
-                return;
-            }
             if (userNumber > random) {
                 System.out.println("Ваше число больше загаданного");
-            } else {
-                System.out.println("Ваше число меньше загаданного");
+                continue;
             }
-            attemptsCounter++;
+            if(userNumber < random){
+                System.out.println("Ваше число меньше загаданного");
+                continue;
+            }
+            System.out.println("Вы угадали с " + (i+1) + " попытки!" +
+                    '\n' + "Загаданное число: " + random);
+            return;
         }
         System.out.println('\n' + "Вы не угадали." + '\n' + "Загаданное число: " + random);
     }
