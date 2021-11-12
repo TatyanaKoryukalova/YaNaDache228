@@ -2,35 +2,31 @@ package com.gmail.san666.yoshi.oopImplementsInterfaces;
 
 import static java.util.Arrays.copyOf;
 
-public class Company {
-    private Person[] staff = new Person[0];
+public class Company implements IdealCompany{
+    private Worker[] staff;
     private String name;
-
-    //region constructors
-    public Company(){
-
-    }
 
     public Company(String name){
         this.name = name;
+        this.staff = new Worker[0];
     }
-    //endregion
 
-    public void hirePerson(Person newWorker, double salary) {
+    public void hirePerson(Worker newWorker, double salary) {
         staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
         newWorker.setCompanyName(this.getName());
         newWorker.setSalary(salary);
     }
 
-    public void firePerson(Person firedWorker) {
-        Person[] newStaffArray = new Person[staff.length - 1];
+    public void firePerson(Worker firedWorker) {
+        Worker[] newStaffArray = new Worker[staff.length - 1];
         int counter = 0;
-        for (Person person : staff) {
-            if (person != firedWorker) {
-                newStaffArray[counter] = person;
-                counter++;
+        for (Worker worker : staff) {
+            if (worker != firedWorker) {
+                continue;
             }
+            newStaffArray[counter] = worker;
+            counter++;
         }
         staff = newStaffArray;
         firedWorker.setCompanyName(null);
@@ -38,7 +34,7 @@ public class Company {
     }
     public void printAllStuffNames() {
         String staffNamesList = "";
-        for (Person worker : staff) {
+        for (Worker worker : staff) {
             staffNamesList = staffNamesList + worker.getName() + '\n';
         }
         System.out.println(staffNamesList);
@@ -46,7 +42,7 @@ public class Company {
 
     public void printAllStuffNamesAndAge() {
         String staffNamesAndAgeList = "";
-        for (Person worker : staff) {
+        for (Worker worker : staff) {
             staffNamesAndAgeList = staffNamesAndAgeList + worker.getName() + ", "
                     + worker.getAge() + " y.o." + '\n';
         }
@@ -54,7 +50,7 @@ public class Company {
     }
 
     //region getters/setters
-    public Person[] getStaff() {
+    public Worker[] getStaff() {
         return staff;
     }
 
@@ -66,7 +62,7 @@ public class Company {
         this.name = name;
     }
 
-    public Person getElement(int index) {
+    public Worker getElement(int index) {
         return staff[index];
     }
 
