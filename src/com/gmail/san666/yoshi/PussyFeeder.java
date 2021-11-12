@@ -43,15 +43,15 @@ public class PussyFeeder {
                     + "6. Покормить только нечетных котов" + '\n'
                     + "7. Покзать всех котов" + '\n'
                     + "0. Выход");
-            switch (scan.nextInt()) {
-                case 1:
+            switch (scan.next()) {
+                case "1":
                     createAllPussies();
                     break;
-                case 2:
+                case "2":
                     System.out.println("Как назовём кошку?");
                     createNewPussy(scan.next());
                     break;
-                case 3:
+                case "3":
                     System.out.println("Кого будем кормить?");
                     printAllPussies();
                     int pussyIndex = scan.nextInt();
@@ -60,26 +60,28 @@ public class PussyFeeder {
                     feedOnePussy(pussyIndex, foodCounter);
                     printAllThePussiesFood();
                     break;
-                case 4:
+                case "4":
                     printAmountQuestion();
                     feedAllThePussies(scan.nextInt());
                     printAllThePussiesFood();
                     break;
-                case 5:
+                case "5":
                     printAmountQuestion();
                     feedEvenOrOddPussies(true, scan.nextInt());
                     printAllThePussiesFood();
                     break;
-                case 6:
+                case "6":
                     printAmountQuestion();
                     feedEvenOrOddPussies(false, scan.nextInt());
                     printAllThePussiesFood();
                     break;
-                case 7:
+                case "7":
                     printAllPussies();
                     break;
-                case 0:
+                case "0":
                     return;
+                default:
+                    System.out.println("Такой команды не существует");
             }
         }
     }
@@ -159,6 +161,10 @@ public class PussyFeeder {
     }
 
     public static void feedOnePussy(int pussyIndex, int amountOfFeed) {
+        if (pussyIndex < 0 && pussyIndex > pussiesNames.length-1){
+            System.out.println("Такого кота нет. Не удалось никого покормить.");
+            return;
+        }
         if ((pussiesFeeders[pussyIndex] + amountOfFeed) < 0) {
             System.out.println("Нельзя сделать меньше, чем ничего. В миске пусто.");
             return;

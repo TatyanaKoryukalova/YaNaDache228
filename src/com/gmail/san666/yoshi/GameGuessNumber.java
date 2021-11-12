@@ -10,6 +10,7 @@ import java.util.Scanner;
  * Когда игра заканчивается, выводится загаданое число
  */
 public class GameGuessNumber {
+
     public static void main(String[] args) {
         gameGuessNumber();
     }
@@ -19,23 +20,28 @@ public class GameGuessNumber {
         int high = 100;
         int random = r.nextInt(high + 1);
         Scanner scan = new Scanner(System.in);
-        int userNumber;
+        String userInput;
 
+        System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
         for (int i = 0; i < 10; i++) {
-            System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
-            System.out.println("Попытка: " + (i+1));
-            userNumber = scan.nextInt();
-            if (userNumber > random) {
+            System.out.println("Попытка: " + (i + 1));
+            userInput = scan.next();
+            if (!userInput.matches("[0-9]+")){
+                System.out.println("Вы ввели не число");
+                continue;
+            }
+
+            if (Integer.parseInt(userInput) > random) {
                 System.out.println("Ваше число больше загаданного");
                 continue;
             }
-            if(userNumber < random){
+            if (Integer.parseInt(userInput) < random) {
                 System.out.println("Ваше число меньше загаданного");
                 continue;
             }
-            System.out.println("Вы угадали с " + (i+1) + " попытки!" +
+            System.out.println("Вы угадали с " + (i + 1) + " попытки!" +
                     '\n' + "Загаданное число: " + random);
-            return;
+            break;
         }
         System.out.println('\n' + "Вы не угадали." + '\n' + "Загаданное число: " + random);
     }
