@@ -11,7 +11,7 @@ public class Application {
         bob.setName("Bob");
         bob.setAge(13);
 
-        Company google = new Company();
+        Company google = new Company("google");
         google.setName("Google");
         google.hirePerson(bob, 500000);
         google.hirePerson(alex, 30000);

@@ -22,9 +22,5 @@ public class Application {
 
         System.out.println(alex.getCompanyName());
         System.out.println(bob.getCompanyName());
-        System.out.println("Trying add reviewer");
-        System.out.println("Trying add reviewer");
-        System.out.println("Trying add reviewer");
-        System.out.println("Trying add reviewer");
     }
 }

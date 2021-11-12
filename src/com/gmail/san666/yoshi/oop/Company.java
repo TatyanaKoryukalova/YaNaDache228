@@ -5,18 +5,13 @@ import java.util.Arrays;
 import static java.util.Arrays.*;
 
 public class Company {
-    private Person[] staff = new Person[0];
+    private Person[] staff;
     private String name;
-
-    //region constructors
-    public Company(){
-
-    }
 
     public Company(String name){
         this.name = name;
+        this.staff = new Person[0];
     }
-    //endregion
 
     public void hirePerson(Person newWorker,double salary) {
         staff = copyOf(staff, staff.length + 1);
@@ -30,9 +25,10 @@ public class Company {
         int counter = 0;
         for (Person person : staff) {
             if (person != firedWorker) {
-                newStaffArray[counter] = person;
-                counter++;
+                continue;
             }
+            newStaffArray[counter] = person;
+            counter++;
         }
         staff = newStaffArray;
         firedWorker.setCompanyName(null);
