@@ -35,12 +35,11 @@ public class PussyFeeder {
     public static void pussiesInitialization() {
         do {
             System.out.println("Сколько у   вас кошек?");
-            String userInput = scan.next();
-            if(!isInputInteger(userInput)){
+            if(!scan.hasNextInt()){
                 System.out.println("Вы ввели не число. Попробуйте снова");
                 continue;
             }
-            int pussiesCounter = Integer.parseInt(userInput);
+            int pussiesCounter = scan.nextInt();
             pussiesNames = new String[pussiesCounter];
             pussiesFeeders = new int[pussiesCounter];
             createAllPussies();
@@ -140,20 +139,7 @@ public class PussyFeeder {
         }
     }
 
-    /**
-     * В методах ниже печатаем только кошек с не null именами
-     */
     public static void printAllPussies() {
-//        String result = "";
-//        for (int i = 0; i < pussiesFeeders.length; i++) {
-//            if (pussiesNames[i] != null) {
-//                result = result + i + " - " + pussiesNames[i] + '\n';
-//            } else {
-//                System.out.println(result + '\n');
-//                return;
-//            }
-//        }
-//        System.out.println(result + '\n');
         for (int i = 0; i < pussiesNames.length; i++){
             System.out.println(i + " - " + pussiesNames[i] + '\n');
         }
@@ -205,18 +191,6 @@ public class PussyFeeder {
             return;
         }
         pussiesFeeders[pussyIndex] += amountOfFeed;
-    }
-
-    public static boolean isInputInteger(String userInput) {
-        return userInput.matches("[0-9]+");
-    }
-
-    public static int userInputToInteger(String userInput) {
-        if (!isInputInteger(userInput)) {
-            System.out.println("Вы ввели не число");
-            menu();
-        }
-        return Integer.parseInt(userInput);
     }
 }
 
