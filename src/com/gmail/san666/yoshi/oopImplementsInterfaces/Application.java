@@ -10,7 +10,7 @@ public class Application {
 
         meta.hirePerson(alex, 30000);
         meta.hirePerson(mad, 500000);
-        meta.hirePerson(anny, 18000);
+        meta.hirePerson(anny, 19000);
         meta.printAllStuffNames();
         meta.firePerson(alex);
         meta.printAllStuffNamesAndAge();
