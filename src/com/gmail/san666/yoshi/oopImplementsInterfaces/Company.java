@@ -2,15 +2,16 @@ package com.gmail.san666.yoshi.oopImplementsInterfaces;
 
 import static java.util.Arrays.copyOf;
 
-public class Company implements IdealCompany{
+public class Company implements IdealCompany {
     private Worker[] staff;
     private String name;
 
-    public Company(String name){
+    public Company(String name) {
         this.name = name;
         this.staff = new Worker[0];
     }
 
+    @Override
     public void hirePerson(Worker newWorker, double salary) {
         staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
@@ -18,6 +19,7 @@ public class Company implements IdealCompany{
         newWorker.setSalary(salary);
     }
 
+    @Override
     public void firePerson(Worker firedWorker) {
         Worker[] newStaffArray = new Worker[staff.length - 1];
         int counter = 0;
@@ -32,6 +34,8 @@ public class Company implements IdealCompany{
         firedWorker.setCompanyName(null);
         firedWorker.setSalary(0);
     }
+
+    @Override
     public void printAllStuffNames() {
         String staffNamesList = "";
         for (Worker worker : staff) {
@@ -40,6 +44,7 @@ public class Company implements IdealCompany{
         System.out.println(staffNamesList);
     }
 
+    @Override
     public void printAllStuffNamesAndAge() {
         String staffNamesAndAgeList = "";
         for (Worker worker : staff) {

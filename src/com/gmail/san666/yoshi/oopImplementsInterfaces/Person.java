@@ -6,8 +6,6 @@ public class Person implements Worker {
     private double salary;
     private String companyName;
 
-    public Person() {
-    }
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
@@ -18,7 +16,7 @@ public class Person implements Worker {
     }
 
     public void salaryValidate(double salary) throws salaryLessThanAgeException {
-        if (!isSalaryGreaterThanAge(salary)) { //если тут добавить 0, то это будет костыль
+        if (!isSalaryGreaterThanAge(salary)) {
             throw new salaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
@@ -52,6 +50,7 @@ public class Person implements Worker {
     public String getCompanyName() {
         return companyName;
     }
+
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
