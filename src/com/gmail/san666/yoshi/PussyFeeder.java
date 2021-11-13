@@ -23,7 +23,7 @@ public class PussyFeeder {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        startMenu();
+        menu();
     }
 
     /**
@@ -32,16 +32,23 @@ public class PussyFeeder {
      * Это необходимо для дальнейшей работы
      */
     public static void startMenu() {
-        System.out.println("Сколько у вас кошек?");
-        int pussiesCounter = userInputToInteger(scan.next());
-        pussiesNames = new String[pussiesCounter];
-        pussiesFeeders = new int[pussiesCounter];
-        createAllPussies();
-        menu();
+        do {
+            System.out.println("Сколько у вас кошек?");
+            String userInput = scan.next();
+            if(!isInputInteger(userInput)){
+                System.out.println("Вы ввели не число. Попробуйте снова");
+                continue;
+            }
+            int pussiesCounter = Integer.parseInt(userInput);
+            pussiesNames = new String[pussiesCounter];
+            pussiesFeeders = new int[pussiesCounter];
+            createAllPussies();
+            return;
+        } while (true);
     }
 
     private static void menu() {
-
+        startMenu();
         int amountOfFood;
 
         while (true) {
