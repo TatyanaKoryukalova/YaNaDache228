@@ -21,6 +21,7 @@ public class PussyFeeder {
     static String[] pussiesNames;
     static int[] pussiesFeeders;
     static Scanner scan = new Scanner(System.in);
+    static final String inputDoesNotContainsNumberMessage = "Вы ввели не целое число";
 
     public static void main(String[] args) {
         menu();
@@ -31,9 +32,9 @@ public class PussyFeeder {
      * Пользователь задает количество кошек и дает им имена
      * Это необходимо для дальнейшей работы
      */
-    public static void startMenu() {
+    public static void pussiesInitialization() {
         do {
-            System.out.println("Сколько у вас кошек?");
+            System.out.println("Сколько у   вас кошек?");
             String userInput = scan.next();
             if(!isInputInteger(userInput)){
                 System.out.println("Вы ввели не число. Попробуйте снова");
@@ -48,44 +49,22 @@ public class PussyFeeder {
     }
 
     private static void menu() {
-        startMenu();
-        int amountOfFood;
+        pussiesInitialization();
 
         while (true) {
-            System.out.println("Меню:" + '\n'
-                    + "1. Покормить одного кота" + '\n'
-                    + "2. Покормить всех котов" + '\n'
-                    + "3. Покормить только четных котов" + '\n'
-                    + "4. Покормить только нечетных котов" + '\n'
-                    + "5. Покзать всех котов" + '\n'
-                    + "666. Выход");
+            printMenu();
             switch (scan.next()) {
                 case "1":
-                    System.out.println("Кого будем кормить?");
-                    printAllPussies();
-                    int pussyIndex = userInputToInteger(scan.next());
-                    printAmountQuestion();
-                    int foodCounter = userInputToInteger(scan.next());
-                    feedOnePussy(pussyIndex, foodCounter);
-                    printAllThePussiesFood();
+                    feedOnePussyPoint();
                     break;
                 case "2":
-                    printAmountQuestion();
-                    amountOfFood = userInputToInteger(scan.next());
-                    feedAllThePussies(amountOfFood);
-                    printAllThePussiesFood();
+                    feedAllThePussiesPoint();
                     break;
                 case "3":
-                    printAmountQuestion();
-                    amountOfFood = userInputToInteger(scan.next());
-                    feedEvenOrOddPussies(true, amountOfFood);
-                    printAllThePussiesFood();
+                    feedEverOrOddPussiesPoint(true);
                     break;
                 case "4":
-                    printAmountQuestion();
-                    amountOfFood = userInputToInteger(scan.next());
-                    feedEvenOrOddPussies(false, amountOfFood);
-                    printAllThePussiesFood();
+                    feedEverOrOddPussiesPoint(false);
                     break;
                 case "5":
                     printAllPussies();
@@ -96,6 +75,58 @@ public class PussyFeeder {
                     System.out.println("Такой команды не существует");
             }
         }
+    }
+
+    private static void feedEverOrOddPussiesPoint(boolean isEven) {
+        printAmountQuestion();
+        if (!scan.hasNextInt()){
+            System.out.println(inputDoesNotContainsNumberMessage);
+            scan.next();
+            return;
+        }
+        feedEvenOrOddPussies(isEven, scan.nextInt());
+        printAllThePussiesFood();
+    }
+
+    private static void feedAllThePussiesPoint() {
+        printAmountQuestion();
+        if (!scan.hasNextInt()){
+            System.out.println(inputDoesNotContainsNumberMessage);
+            scan.next();
+            return;
+        }
+        feedAllThePussies(scan.nextInt());
+        printAllThePussiesFood();
+    }
+
+    private static void feedOnePussyPoint() {
+        System.out.println("Кого будем кормить?");
+        printAllPussies();
+        if (!scan.hasNextInt()){
+            System.out.println(inputDoesNotContainsNumberMessage);
+            scan.next();
+            return;
+        }
+        int pussyIndex = scan.nextInt();
+        printAmountQuestion();
+        if (!scan.hasNextInt()){
+            System.out.println(inputDoesNotContainsNumberMessage);
+            scan.next();
+            return;
+        }
+        int foodCounter = scan.nextInt();
+        feedOnePussy(pussyIndex, foodCounter);
+        printAllThePussiesFood();
+    }
+
+    private static void printMenu() {
+        System.out.println("Меню:" + '\n'
+                + "1. Покормить одного кота" + '\n'
+                + "2. Покормить всех котов" + '\n'
+                + "3. Покормить только четных котов" + '\n'
+                + "4. Покормить только нечетных котов" + '\n'
+                + "5. Покзать всех котов" + '\n'
+                + "666. Выход");
     }
 
     public static void printAmountQuestion() {
@@ -113,16 +144,19 @@ public class PussyFeeder {
      * В методах ниже печатаем только кошек с не null именами
      */
     public static void printAllPussies() {
-        String result = "";
-        for (int i = 0; i < pussiesFeeders.length; i++) {
-            if (pussiesNames[i] != null) {
-                result = result + i + " - " + pussiesNames[i] + '\n';
-            } else {
-                System.out.println(result + '\n');
-                return;
-            }
+//        String result = "";
+//        for (int i = 0; i < pussiesFeeders.length; i++) {
+//            if (pussiesNames[i] != null) {
+//                result = result + i + " - " + pussiesNames[i] + '\n';
+//            } else {
+//                System.out.println(result + '\n');
+//                return;
+//            }
+//        }
+//        System.out.println(result + '\n');
+        for (int i = 0; i < pussiesNames.length; i++){
+            System.out.println(i + " - " + pussiesNames[i] + '\n');
         }
-        System.out.println(result + '\n');
     }
 
     public static void printAllThePussiesFood() {
