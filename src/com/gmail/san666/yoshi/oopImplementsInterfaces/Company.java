@@ -24,7 +24,7 @@ public class Company implements IdealCompany {
         Worker[] newStaffArray = new Worker[staff.length - 1];
         int counter = 0;
         for (Worker worker : staff) {
-            if (worker != firedWorker) {
+            if (worker == firedWorker) {
                 continue;
             }
             newStaffArray[counter] = worker;
@@ -37,21 +37,17 @@ public class Company implements IdealCompany {
 
     @Override
     public void printAllStuffNames() {
-        String staffNamesList = "";
         for (Worker worker : staff) {
-            staffNamesList = staffNamesList + worker.getName() + '\n';
+            System.out.println(worker.getName());
         }
-        System.out.println(staffNamesList);
     }
 
     @Override
     public void printAllStuffNamesAndAge() {
-        String staffNamesAndAgeList = "";
         for (Worker worker : staff) {
-            staffNamesAndAgeList = staffNamesAndAgeList + worker.getName() + ", "
-                    + worker.getAge() + " y.o." + '\n';
+            System.out.println(worker.getName() + ", "
+                    + worker.getAge() + " y.o.");
         }
-        System.out.println(staffNamesAndAgeList);
     }
 
     //region getters/setters

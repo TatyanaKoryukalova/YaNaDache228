@@ -2,21 +2,23 @@ package com.gmail.san666.yoshi.oopImplementsInterfaces;
 
 public interface IdealCompany {
     /**
+     * Позволяет нанять нового сотрудника
+     * Т.е. добавляет в массив новый элемент     *
      *
-     * @param newWorker
-     * @param salary
+     * @param newWorker новый сотрудник, элемент типа Worker
+     * @param salary зарплана нового сотрудника
      */
     void hirePerson(Worker newWorker, double salary);
 
     /**
-     *Метод увольняет сотрудника (удалить элемент массива)
-     * Т.е. необходимо создать новый массив
-     * @param firedWorker
+     * Позволяет увольняет сотрудника (удалить элемент массива)
+     *
+     * @param firedWorker сотрудник, которого увольняем
      */
     void firePerson(Worker firedWorker);
 
     /**
-     *
+     * Выводит список имен всех сотрудников
      */
     void printAllStuffNames();
 

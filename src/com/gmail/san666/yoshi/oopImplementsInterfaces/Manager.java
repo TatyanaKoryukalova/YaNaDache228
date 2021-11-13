@@ -11,6 +11,11 @@ public class Manager implements Worker {
         this.age = age;
     }
 
+    @Override
+    public double calculateIncomeTax() {
+        return salary * 0.2;
+    }
+
     // region getters/setters
     @Override
     public String getName() {
@@ -39,7 +44,8 @@ public class Manager implements Worker {
         this.companyName = name;
     }
 
-    public double getSalary(double salary) {
+    @Override
+    public double getSalary() {
         return salary;
     }
 

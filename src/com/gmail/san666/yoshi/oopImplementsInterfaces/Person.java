@@ -23,6 +23,7 @@ public class Person implements Worker {
 
 
     // region getters/setters
+    @Override
     public String getName() {
         return name;
     }
@@ -31,6 +32,7 @@ public class Person implements Worker {
         this.name = name;
     }
 
+    @Override
     public int getAge() {
         return age;
     }
@@ -39,10 +41,12 @@ public class Person implements Worker {
         this.age = age;
     }
 
+    @Override
     public double getSalary() {
         return salary;
     }
 
+    @Override
     public void setSalary(double salary) {
         this.salary = salary;
     }
@@ -51,7 +55,7 @@ public class Person implements Worker {
         return companyName;
     }
 
-
+    @Override
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
