@@ -22,13 +22,15 @@ public class PussyFeeder {
     static int[] pussiesFeeders;
     static Scanner scan = new Scanner(System.in);
     static final String inputDoesNotContainsNumberMessage = "Вы ввели не целое число";
+    static final String amountFeedQuestion = "Сколько пакетиков положить? (со знаком минус, если убрать)";
+
 
     public static void main(String[] args) {
         menu();
     }
 
     /**
-     * В стартовом меню проводим инициализацию
+     * В данном методе проводим инициализацию
      * Пользователь задает количество кошек и дает им имена
      * Это необходимо для дальнейшей работы
      */
@@ -77,7 +79,7 @@ public class PussyFeeder {
     }
 
     private static void feedEverOrOddPussiesPoint(boolean isEven) {
-        printAmountQuestion();
+        System.out.println(amountFeedQuestion);
         if (!scan.hasNextInt()){
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
@@ -88,7 +90,7 @@ public class PussyFeeder {
     }
 
     private static void feedAllThePussiesPoint() {
-        printAmountQuestion();
+        System.out.println(amountFeedQuestion);
         if (!scan.hasNextInt()){
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
@@ -107,7 +109,7 @@ public class PussyFeeder {
             return;
         }
         int pussyIndex = scan.nextInt();
-        printAmountQuestion();
+        System.out.println(amountFeedQuestion);
         if (!scan.hasNextInt()){
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
@@ -126,10 +128,6 @@ public class PussyFeeder {
                 + "4. Покормить только нечетных котов" + '\n'
                 + "5. Покзать всех котов" + '\n'
                 + "666. Выход");
-    }
-
-    public static void printAmountQuestion() {
-        System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
     }
 
     public static void createAllPussies() {
