@@ -20,17 +20,15 @@ public class GameGuessNumber {
         int high = 100;
         int random = r.nextInt(high + 1);
         Scanner scan = new Scanner(System.in);
-        String userInput;
 
         System.out.println("Угадайте число от 0 до 100" + '\n' + "У вас 10 попыток.");
         for (int i = 0; i < 10; i++) {
             System.out.println("Попытка: " + (i + 1));
-            userInput = scan.next();
-            if (!userInput.matches("[0-9]+")){
+            String userInput = scan.next();
+            if (!userInput.matches("[0-9]+")) {
                 System.out.println("Вы ввели не число");
                 continue;
             }
-
             if (Integer.parseInt(userInput) > random) {
                 System.out.println("Ваше число больше загаданного");
                 continue;
