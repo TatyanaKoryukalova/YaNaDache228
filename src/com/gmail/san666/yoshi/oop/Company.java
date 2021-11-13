@@ -31,13 +31,14 @@ public class Company {
             counter++;
         }
         staff = newStaffArray;
-        firedWorker.setCompanyName(null);
+        firedWorker.setCompanyName("Человек нигде не работает");
         firedWorker.setSalary(0);
     }
+
     public void printAllStuffNames() {
         String staffNamesList = "";
         for (Person worker : staff) {
-            staffNamesList = staffNamesList + worker.getName() + '\n';
+            staffNamesList += worker.getName() + '\n';
         }
         System.out.println(staffNamesList);
     }
@@ -45,7 +46,7 @@ public class Company {
     public void printAllStuffNamesAndAge() {
         String staffNamesAndAgeList = "";
         for (Person worker : staff) {
-            staffNamesAndAgeList = staffNamesAndAgeList + worker.getName() + ", "
+            staffNamesAndAgeList += worker.getName() + ", "
                     + worker.getAge() + " y.o." + '\n';
         }
         System.out.println(staffNamesAndAgeList);
@@ -56,6 +57,10 @@ public class Company {
         return staff;
     }
 
+    public void setStaff(Person[] staff){
+        this.staff = staff;
+    }
+
     public String getName() {
         return name;
     }
@@ -63,11 +68,6 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Person getElement(int index) {
-        return staff[index];
-    }
-
     //endregion
 
 }

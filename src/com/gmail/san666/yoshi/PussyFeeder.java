@@ -16,7 +16,6 @@ import java.util.Scanner;
  * то есть как ввел 666, то выйти из программы
  * в миске не может быть меньше 0 и больше 7 пакетиков корма
  * После ввода программа каждый раз выводит у кого сколько корма и меню
- * Так. Надо как-то проинициализировать массивы. Вручную? или от пользователя?
  */
 public class PussyFeeder {
     static String[] pussiesNames;
@@ -24,61 +23,67 @@ public class PussyFeeder {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+        startMenu();
+    }
+
+    /**
+     * В стартовом меню проводим инициализацию
+     * Пользователь задает количество кошек и дает им имена
+     * Это необходимо для дальнейшей работы
+     */
+    public static void startMenu() {
+        System.out.println("Сколько у вас кошек?");
+        int pussiesCounter = userInputToInteger(scan.next());
+        pussiesNames = new String[pussiesCounter];
+        pussiesFeeders = new int[pussiesCounter];
+        createAllPussies();
         menu();
     }
 
     private static void menu() {
-        System.out.println("Сколько у вас кошек?");
-        int pussiesCounter = scan.nextInt();
-        pussiesNames = new String[pussiesCounter];
-        pussiesFeeders = new int[pussiesCounter];
+
+        int amountOfFood;
 
         while (true) {
             System.out.println("Меню:" + '\n'
-                    + "1. Дать имена всем кошкам" + '\n'
-                    + "2. Дать имя одной кошке" + '\n'
-                    + "3. Покормить одного кота" + '\n'
-                    + "4. Покормить всех котов" + '\n'
-                    + "5. Покормить только четных котов" + '\n'
-                    + "6. Покормить только нечетных котов" + '\n'
-                    + "7. Покзать всех котов" + '\n'
-                    + "0. Выход");
+                    + "1. Покормить одного кота" + '\n'
+                    + "2. Покормить всех котов" + '\n'
+                    + "3. Покормить только четных котов" + '\n'
+                    + "4. Покормить только нечетных котов" + '\n'
+                    + "5. Покзать всех котов" + '\n'
+                    + "666. Выход");
             switch (scan.next()) {
                 case "1":
-                    createAllPussies();
-                    break;
-                case "2":
-                    System.out.println("Как назовём кошку?");
-                    createNewPussy(scan.next());
-                    break;
-                case "3":
                     System.out.println("Кого будем кормить?");
                     printAllPussies();
-                    int pussyIndex = scan.nextInt();
+                    int pussyIndex = userInputToInteger(scan.next());
                     printAmountQuestion();
-                    int foodCounter = scan.nextInt();
+                    int foodCounter = userInputToInteger(scan.next());
                     feedOnePussy(pussyIndex, foodCounter);
+                    printAllThePussiesFood();
+                    break;
+                case "2":
+                    printAmountQuestion();
+                    amountOfFood = userInputToInteger(scan.next());
+                    feedAllThePussies(amountOfFood);
+                    printAllThePussiesFood();
+                    break;
+                case "3":
+                    printAmountQuestion();
+                    amountOfFood = userInputToInteger(scan.next());
+                    feedEvenOrOddPussies(true, amountOfFood);
                     printAllThePussiesFood();
                     break;
                 case "4":
                     printAmountQuestion();
-                    feedAllThePussies(scan.nextInt());
+                    amountOfFood = userInputToInteger(scan.next());
+                    feedEvenOrOddPussies(false, amountOfFood);
                     printAllThePussiesFood();
                     break;
                 case "5":
-                    printAmountQuestion();
-                    feedEvenOrOddPussies(true, scan.nextInt());
-                    printAllThePussiesFood();
-                    break;
-                case "6":
-                    printAmountQuestion();
-                    feedEvenOrOddPussies(false, scan.nextInt());
-                    printAllThePussiesFood();
-                    break;
-                case "7":
                     printAllPussies();
                     break;
-                case "0":
+                case "666":
                     return;
                 default:
                     System.out.println("Такой команды не существует");
@@ -88,22 +93,6 @@ public class PussyFeeder {
 
     public static void printAmountQuestion() {
         System.out.println("Сколько пакетиков положить? (со знаком минус, если убрать)");
-    }
-
-    /**
-     * В данном случае мы добавляем кошку в массив с четко заданной размерностью.
-     * В методе ниже мы проверяем наличие свободных ячеек, в первую такую кладем кошку
-     * Подразумевается что массив заполняется с начала без пропусков
-     */
-    public static void createNewPussy(String pussyName) {
-        for (int i = 0; i < pussyName.length(); i++) {
-            if (pussiesNames[i] == null) {
-                pussiesNames[i] = pussyName;
-                System.out.println("Новую кошку под номером " + i + " зовут " + pussyName);
-                return;
-            }
-        }
-        System.out.println("Всем кошкам уже дали имена. Не удалось назвать кошку.");
     }
 
     public static void createAllPussies() {
@@ -161,7 +150,7 @@ public class PussyFeeder {
     }
 
     public static void feedOnePussy(int pussyIndex, int amountOfFeed) {
-        if (pussyIndex < 0 && pussyIndex > pussiesNames.length-1){
+        if (pussyIndex < 0 && pussyIndex > pussiesNames.length - 1) {
             System.out.println("Такого кота нет. Не удалось никого покормить.");
             return;
         }
@@ -175,6 +164,18 @@ public class PussyFeeder {
             return;
         }
         pussiesFeeders[pussyIndex] += amountOfFeed;
+    }
+
+    public static boolean isInputInteger(String userInput) {
+        return userInput.matches("[0-9]+");
+    }
+
+    public static int userInputToInteger(String userInput) {
+        if (!isInputInteger(userInput)) {
+            System.out.println("Вы ввели не число");
+            menu();
+        }
+        return Integer.parseInt(userInput);
     }
 }
 

@@ -3,7 +3,8 @@ package com.gmail.san666.yoshi.oop;
 /**
  * TODO
  * - 1. создать 1 статичное поле любого типа String попробовать поменять его у Боба и у Алекса; String companyName.
- * -  Должен быть статичный метод, который работает с этим полем.
+ * -  Должен быть статичный метод, который работает с этим полем. - посмотрели что static поле принадлежит в целом классу, а не экземплярам, меняестя для всех экземпляров.
+ * в работе будет мешать и нарушит логику
  * - 2. написать метод в этом классе, который проверяет, что зарплата не меньше, чем возраст - этот метод должен
  * возвращать boolean.
  * - 3. Написать метод salaryValidate, который вызывает метод из пункта 2 и выкидывает исключения, если проверка не проходит.
@@ -20,6 +21,7 @@ public class Person {
 
     public Person() {
     }
+
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
@@ -30,11 +32,10 @@ public class Person {
     }
 
     public void salaryValidate(double salary) throws salaryLessThanAgeException {
-        if (!isSalaryGreaterThanAge(salary)) { //если тут добавить 0, то это будет костыль
+        if (!isSalaryGreaterThanAge(salary)) {
             throw new salaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
-
 
     // region getters/setters
     public String getName() {

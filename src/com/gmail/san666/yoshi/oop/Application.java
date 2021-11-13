@@ -9,10 +9,9 @@ public class Application {
 
         Person bob = new Person();
         bob.setName("Bob");
-        bob.setAge(13);
+        bob.setAge(23);
 
         Company google = new Company("google");
-        google.setName("Google");
         google.hirePerson(bob, 500000);
         google.hirePerson(alex, 30000);
         google.printAllStuffNamesAndAge();
