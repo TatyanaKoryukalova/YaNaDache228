@@ -37,7 +37,7 @@ public class PussyFeeder {
     public static void pussiesInitialization() {
         do {
             System.out.println("Сколько у   вас кошек?");
-            if(!scan.hasNextInt()){
+            if (!scan.hasNextInt()) {
                 System.out.println("Вы ввели не число. Попробуйте снова");
                 continue;
             }
@@ -80,7 +80,7 @@ public class PussyFeeder {
 
     private static void feedEverOrOddPussiesPoint(boolean isEven) {
         System.out.println(amountFeedQuestion);
-        if (!scan.hasNextInt()){
+        if (!scan.hasNextInt()) {
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
             return;
@@ -91,7 +91,7 @@ public class PussyFeeder {
 
     private static void feedAllThePussiesPoint() {
         System.out.println(amountFeedQuestion);
-        if (!scan.hasNextInt()){
+        if (!scan.hasNextInt()) {
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
             return;
@@ -103,14 +103,18 @@ public class PussyFeeder {
     private static void feedOnePussyPoint() {
         System.out.println("Кого будем кормить?");
         printAllPussies();
-        if (!scan.hasNextInt()){
+        if (!scan.hasNextInt()) {
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
             return;
         }
         int pussyIndex = scan.nextInt();
+        if (pussyIndex < 0 && pussyIndex > (pussiesNames.length - 1)) {
+            System.out.println("Такой кошки нет");
+            return;
+        }
         System.out.println(amountFeedQuestion);
-        if (!scan.hasNextInt()){
+        if (!scan.hasNextInt()) {
             System.out.println(inputDoesNotContainsNumberMessage);
             scan.next();
             return;
@@ -138,7 +142,7 @@ public class PussyFeeder {
     }
 
     public static void printAllPussies() {
-        for (int i = 0; i < pussiesNames.length; i++){
+        for (int i = 0; i < pussiesNames.length; i++) {
             System.out.println(i + " - " + pussiesNames[i] + '\n');
         }
     }
