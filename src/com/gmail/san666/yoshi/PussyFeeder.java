@@ -109,7 +109,7 @@ public class PussyFeeder {
             return;
         }
         int pussyIndex = scan.nextInt();
-        if (pussyIndex < 0 && pussyIndex > (pussiesNames.length - 1)) {
+        if (!doesPussyWithPussyIndexExis(pussyIndex)) {
             System.out.println("Такой кошки нет");
             return;
         }
@@ -122,6 +122,10 @@ public class PussyFeeder {
         int foodCounter = scan.nextInt();
         feedOnePussy(pussyIndex, foodCounter);
         printAllThePussiesFood();
+    }
+
+    private static boolean doesPussyWithPussyIndexExis(int pussyIndex) {
+        return pussyIndex >= 0 && pussyIndex < pussiesNames.length;
     }
 
     private static void printMenu() {
@@ -179,10 +183,6 @@ public class PussyFeeder {
     }
 
     public static void feedOnePussy(int pussyIndex, int amountOfFeed) {
-        if (pussyIndex < 0 && pussyIndex > pussiesNames.length - 1) {
-            System.out.println("Такого кота нет. Не удалось никого покормить.");
-            return;
-        }
         if ((pussiesFeeders[pussyIndex] + amountOfFeed) < 0) {
             System.out.println("Нельзя сделать меньше, чем ничего. В миске пусто.");
             return;
