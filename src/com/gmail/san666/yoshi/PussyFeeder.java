@@ -109,7 +109,7 @@ public class PussyFeeder {
             return;
         }
         int pussyIndex = scan.nextInt();
-        if (!doesPussyWithPussyIndexExis(pussyIndex)) {
+        if (!pussyExist(pussyIndex)) {
             System.out.println("Такой кошки нет");
             return;
         }
@@ -124,7 +124,7 @@ public class PussyFeeder {
         printAllThePussiesFood();
     }
 
-    private static boolean doesPussyWithPussyIndexExis(int pussyIndex) {
+    private static boolean pussyExist(int pussyIndex) {
         return pussyIndex >= 0 && pussyIndex < pussiesNames.length;
     }
 
