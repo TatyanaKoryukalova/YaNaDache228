@@ -1,6 +1,6 @@
 package com.gmail.san666.yoshi.oopExtendsAbstract;
 
-public abstract class WorkerFields implements Worker {
+public abstract class AbstractWorker implements Worker {
     private String name;
     private int age;
     private double salary;

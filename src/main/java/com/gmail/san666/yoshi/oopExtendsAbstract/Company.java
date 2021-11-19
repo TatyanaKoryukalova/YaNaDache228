@@ -13,6 +13,10 @@ public class Company implements IdealCompany {
 
     @Override
     public void hirePerson(Worker newWorker, double salary) {
+        if (isStaffMember(newWorker)) {
+            System.out.println("This worker is staff member already");
+            return;
+        }
         staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
         newWorker.setCompanyName(this.getName());
@@ -21,6 +25,10 @@ public class Company implements IdealCompany {
 
     @Override
     public void firePerson(Worker firedWorker) {
+        if (!isStaffMember(firedWorker)) {
+            System.out.println("This worker is not staff member");
+            return;
+        }
         Worker[] newStaffArray = new Worker[staff.length - 1];
         int counter = 0;
         for (Worker worker : staff) {
@@ -33,6 +41,15 @@ public class Company implements IdealCompany {
         staff = newStaffArray;
         firedWorker.setCompanyName(null);
         firedWorker.setSalary(0);
+    }
+
+    private boolean isStaffMember(Worker person) {
+        for (Worker worker : staff) {
+            if (person.equals(worker)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

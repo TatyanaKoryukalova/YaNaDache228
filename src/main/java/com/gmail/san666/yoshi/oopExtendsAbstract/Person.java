@@ -1,6 +1,6 @@
 package com.gmail.san666.yoshi.oopExtendsAbstract;
 
-public class Person extends WorkerFields {
+public class Person extends AbstractWorker {
 
     public Person(String name, int age) {
         setName(name);
