@@ -1,4 +1,4 @@
-package com.gmail.san666.yoshi.oopImplementsInterfaces;
+package com.gmail.san666.yoshi.oopExtendsAbstract;
 
 public class Application {
 

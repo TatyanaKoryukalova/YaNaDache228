@@ -1,26 +1,10 @@
-package com.gmail.san666.yoshi.oopImplementsInterfaces;
+package com.gmail.san666.yoshi.oopExtendsAbstract;
 
-public class Person implements Worker {
+public abstract class WorkerFields implements Worker {
     private String name;
     private int age;
     private double salary;
     private String companyName;
-
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public boolean isSalaryGreaterThanAge(double salary) {
-        return salary >= age;
-    }
-
-    public void salaryValidate(double salary) throws salaryLessThanAgeException {
-        if (!isSalaryGreaterThanAge(salary)) {
-            throw new salaryLessThanAgeException("Salary cannot be less than age!");
-        }
-    }
-
 
     // region getters/setters
     @Override
@@ -59,5 +43,5 @@ public class Person implements Worker {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-    // endregion
+    //endregion
 }
