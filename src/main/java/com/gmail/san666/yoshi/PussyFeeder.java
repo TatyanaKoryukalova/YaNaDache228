@@ -165,14 +165,12 @@ public class PussyFeeder {
     }
 
     public static void feedEvenOrOddPussies(boolean isEven, int foodCounter) {
+        int counter = 0;
         if (isEven) {
-            for (int i = 0; i < pussiesNames.length; i += 2) {
-                feedOnePussy(i, foodCounter);
-            }
-        } else {
-            for (int i = 1; i < pussiesNames.length; i += 2) {
-                feedOnePussy(i, foodCounter);
-            }
+            counter = 1;
+        }
+        for (int i = counter; i < pussiesNames.length; i += 2) {
+            feedOnePussy(i, foodCounter);
         }
     }
 
