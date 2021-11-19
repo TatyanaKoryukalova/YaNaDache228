@@ -30,11 +30,11 @@ public class GameGuessNumber {
                 continue;
             }
             if (Integer.parseInt(userInput) > random) {
-                System.out.println("Ваше число больше загаданного");
+                System.out.println("Ваше число greater загаданного");
                 continue;
             }
             if (Integer.parseInt(userInput) < random) {
-                System.out.println("Ваше число меньше загаданного");
+                System.out.println("Ваше число less загаданного");
                 continue;
             }
             System.out.println("Вы угадали с " + (i + 1) + " попытки!" +

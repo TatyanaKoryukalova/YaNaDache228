@@ -8,12 +8,16 @@ public class Company {
     private Person[] staff;
     private String name;
 
-    public Company(String name){
+    public Company(String name) {
         this.name = name;
         this.staff = new Person[0];
     }
 
-    public void hirePerson(Person newWorker,double salary) {
+    public void hirePerson(Person newWorker, double salary) {
+        if (isStaffMember(newWorker)) {
+            System.out.println("This worker is staff member already");
+            return;
+        }
         staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
         newWorker.setCompanyName(this.getName());
@@ -21,21 +25,34 @@ public class Company {
     }
 
     public void firePerson(Person firedWorker) {
+        if (!isStaffMember(firedWorker)) {
+            System.out.println("This worker is not staff member");
+            return;
+        }
         Person[] newStaffArray = new Person[staff.length - 1];
         int counter = 0;
         for (Person person : staff) {
-            if (person != firedWorker) {
+            if (person == firedWorker) {
                 continue;
             }
             newStaffArray[counter] = person;
             counter++;
         }
         staff = newStaffArray;
-        firedWorker.setCompanyName("Человек нигде не работает");
+        firedWorker.setCompanyName("This person doesn't work anywhere");
         firedWorker.setSalary(0);
     }
 
-    public void printAllStuffNames() {
+    private boolean isStaffMember(Person worker) {
+        for (Person person : staff) {
+            if (worker == person) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printAllStaffNames() {
         String staffNamesList = "";
         for (Person worker : staff) {
             staffNamesList += worker.getName() + '\n';
@@ -43,7 +60,7 @@ public class Company {
         System.out.println(staffNamesList);
     }
 
-    public void printAllStuffNamesAndAge() {
+    public void printAllStaffNamesAndAge() {
         String staffNamesAndAgeList = "";
         for (Person worker : staff) {
             staffNamesAndAgeList += worker.getName() + ", "
@@ -57,7 +74,7 @@ public class Company {
         return staff;
     }
 
-    public void setStaff(Person[] staff){
+    public void setStaff(Person[] staff) {
         this.staff = staff;
     }
 
