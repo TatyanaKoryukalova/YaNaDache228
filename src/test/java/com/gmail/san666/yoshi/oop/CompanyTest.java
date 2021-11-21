@@ -12,7 +12,7 @@ class CompanyTest {
     void hirePerson() {
         Person alex = new Person("Alex", 22);
         Company google = new Company("Google");
-        google.hirePerson(alex, 32000);
+        google.hirePerson(alex, 35000);
         assertThat(alex).isEqualTo(google.getStaff()[0]);
         assertThat(google.getStaff().length).isEqualTo(1);
         assertThat(alex.getSalary()).isEqualTo(32000);
