@@ -20,7 +20,8 @@ class CompanyTest {
     }
 
     @Test
-    void firePerson() {
+    void firePersonTest() {
+
     }
 
     @Test
