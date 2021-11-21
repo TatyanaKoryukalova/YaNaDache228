@@ -7,12 +7,12 @@ public class Person extends AbstractWorker {
         setAge(age);
     }
 
-    public boolean isSalaryGreaterThanAge() {
-        return getSalary() >= getAge();
+    public boolean isAgeGreaterThanSalary() {
+        return getAge() >= getSalary();
     }
 
     public void salaryValidate(double salary) throws salaryLessThanAgeException {
-        if (!isSalaryGreaterThanAge()) {
+        if (isAgeGreaterThanSalary()) {
             throw new salaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
