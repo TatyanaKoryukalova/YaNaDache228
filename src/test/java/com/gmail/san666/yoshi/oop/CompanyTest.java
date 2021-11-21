@@ -32,14 +32,5 @@ class CompanyTest {
         assertThat(bob).isEqualTo(yahoo.getStaff()[0]);
         assertThat(alex.getSalary()).isEqualTo(0);
         assertThat(alex.getCompanyName()).isEqualTo("This person doesn't work anywhere");
-
-    }
-
-    @Test
-    void printAllStaffNames() {
-    }
-
-    @Test
-    void printAllStaffNamesAndAge() {
     }
 }
