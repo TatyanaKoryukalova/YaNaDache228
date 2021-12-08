@@ -11,13 +11,13 @@ public class Person implements Worker {
         this.age = age;
     }
 
-    public boolean isAgeGreaterThanSalary(double salary) {
+    private boolean isAgeGreaterThanSalary(double salary) {
         return age >= salary;
     }
 
-    public void salaryValidate(double salary) throws salaryLessThanAgeException {
+    public void salaryValidate(double salary) {
         if (isAgeGreaterThanSalary(salary)) {
-            throw new salaryLessThanAgeException("Salary cannot be less than age!");
+            throw new SalaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
 

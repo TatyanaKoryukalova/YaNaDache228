@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
 
@@ -14,7 +13,7 @@ class PersonTest {
         alex.setSalary(30);
 
         Throwable thrown = catchThrowable(alex::salaryValidate);
-        assertThat(thrown).isInstanceOf(salaryLessThanAgeException.class)
+        assertThat(thrown).isInstanceOf(SalaryLessThanAgeException.class)
                 .hasMessage("Salary cannot be less than age!");
     }
 }

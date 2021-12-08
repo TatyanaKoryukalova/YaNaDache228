@@ -24,13 +24,13 @@ public class Person {
         this.age = age;
     }
 
-    public boolean isAgeGreaterThanSalary(double salary) {
+    private boolean isAgeGreaterThanSalary(double salary) {
         return age >= salary;
     }
 
-    public void salaryValidate() throws salaryLessThanAgeException {
+    public void salaryValidate() {
         if (isAgeGreaterThanSalary(this.salary)) {
-            throw new salaryLessThanAgeException("Salary cannot be less than age!");
+            throw new SalaryLessThanAgeException("Salary cannot be less than age!");
         }
     }
 
