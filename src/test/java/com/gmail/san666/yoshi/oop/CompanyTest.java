@@ -1,10 +1,8 @@
 package com.gmail.san666.yoshi.oop;
 
-import com.gmail.san666.yoshi.oop.Person;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CompanyTest {
 
@@ -21,13 +19,16 @@ class CompanyTest {
 
     @Test
     void firePerson() {
-    }
+        Person alex = new Person("Alex", 35);
+        Person bob = new Person("Bob", 27);
+        Company yahoo = new Company("Yahoo");
+        yahoo.hirePerson(alex, 15000);
+        yahoo.hirePerson(bob, 35000);
+        yahoo.firePerson(alex);
 
-    @Test
-    void printAllStaffNames() {
-    }
-
-    @Test
-    void printAllStaffNamesAndAge() {
+        assertThat(yahoo.getStaff().length).isEqualTo(1);
+        assertThat(bob).isEqualTo(yahoo.getStaff()[0]);
+        assertThat(alex.getSalary()).isEqualTo(0);
+        assertThat(alex.getCompanyName()).isEqualTo("This person doesn't work anywhere");
     }
 }
