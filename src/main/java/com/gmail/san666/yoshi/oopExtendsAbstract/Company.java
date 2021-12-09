@@ -17,6 +17,7 @@ public class Company implements IdealCompany {
             System.out.println("This worker is staff member already");
             return;
         }
+        newWorker.salaryValidate(salary);
         staff = copyOf(staff, staff.length + 1);
         staff[staff.length - 1] = newWorker;
         newWorker.setCompanyName(this.getName());

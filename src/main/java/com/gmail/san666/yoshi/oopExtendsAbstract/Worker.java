@@ -1,5 +1,7 @@
 package com.gmail.san666.yoshi.oopExtendsAbstract;
 
+import com.gmail.san666.yoshi.oopImplementsInterfaces.SalaryLessThanAgeException;
+
 public interface Worker {
     /**
      * Позволяет установить значение поля companyName
@@ -36,6 +38,15 @@ public interface Worker {
      * @return зарплата сотрудника
      */
     double getSalary();
+
+    /**
+     * Проверяет корректностьустанавливаемой зарплаты
+     *
+     * @param salary - новая зарплата
+     * @throws SalaryLessThanAgeException в случае
+     *                                    если устанавливаемая зарплата меньше возраста
+     */
+    void salaryValidate(double salary);
 
     /**
      * Рассчитывает размер подоходного налога работника,

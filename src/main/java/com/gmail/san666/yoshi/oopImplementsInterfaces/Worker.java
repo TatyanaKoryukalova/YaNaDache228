@@ -37,6 +37,16 @@ public interface Worker {
      */
     double getSalary();
 
+
+    /**
+     * Проверяет корректностьустанавливаемой зарплаты
+     *
+     * @param salary - новая зарплата
+     * @throws SalaryLessThanAgeException в случае
+     *                                    если устанавливаемая зарплата меньше возраста
+     */
+    void salaryValidate(double salary);
+
     /**
      * Рассчитывает размер подоходного налога работника,
      * возвращает значение типа double

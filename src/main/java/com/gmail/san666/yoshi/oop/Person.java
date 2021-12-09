@@ -28,8 +28,8 @@ public class Person {
         return age >= salary;
     }
 
-    public void salaryValidate() {
-        if (isAgeGreaterThanSalary(this.salary)) {
+    public void salaryValidate(double salary) {
+        if (isAgeGreaterThanSalary(salary)) {
             throw new SalaryLessThanAgeException("Salary cannot be less than age!");
         }
     }

@@ -15,6 +15,7 @@ public class Person implements Worker {
         return age >= salary;
     }
 
+    @Override
     public void salaryValidate(double salary) {
         if (isAgeGreaterThanSalary(salary)) {
             throw new SalaryLessThanAgeException("Salary cannot be less than age!");
