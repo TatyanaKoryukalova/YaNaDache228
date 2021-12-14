@@ -3,11 +3,12 @@ package com.gmail.san666.yoshi.oop;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class CompanyTest {
 
     @Test
-    void hirePerson() {
+    void shouldHirePerson() {
         Person alex = new Person("Alex", 22);
         Company google = new Company("Google");
         google.hirePerson(alex, 32000);
@@ -18,7 +19,15 @@ class CompanyTest {
     }
 
     @Test
-    void firePerson() {
+    void shouldThrowSalaryLessThanAgeExceptionWhenHirePerson() {
+        Person alex = new Person("Alex", 22);
+        Company google = new Company("Google");
+        assertThatExceptionOfType(SalaryLessThanAgeException.class).isThrownBy(() ->
+                google.hirePerson(alex, 20));
+    }
+
+    @Test
+    void shouldFirePerson() {
         Person alex = new Person("Alex", 35);
         Person bob = new Person("Bob", 27);
         Company yahoo = new Company("Yahoo");

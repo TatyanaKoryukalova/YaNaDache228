@@ -1,5 +1,7 @@
 package com.gmail.san666.yoshi.oopImplementsInterfaces;
 
+import com.gmail.san666.yoshi.oopExtendsAbstract.SalaryLessThanAgeException;
+
 public class Manager implements Worker {
     private String name;
     private int age;
@@ -9,6 +11,17 @@ public class Manager implements Worker {
     public Manager(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    private boolean isAgeGreaterThanSalary(double salary) {
+        return getAge() >= salary;
+    }
+
+    @Override
+    public void salaryValidate(double salary) {
+        if (isAgeGreaterThanSalary(salary)) {
+            throw new SalaryLessThanAgeException("Salary cannot be less than age!");
+        }
     }
 
     @Override
