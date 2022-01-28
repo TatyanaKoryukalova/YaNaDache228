@@ -61,10 +61,10 @@ public interface Worker {
     /**
      * Возвращает имя сотрудника
      */
-    String printName();
+    void printName();
 
     /**
      * Возвращает имя и возраст сотрудника
      */
-    String printNameAndAge();
+    void printNameAndAge();
 }

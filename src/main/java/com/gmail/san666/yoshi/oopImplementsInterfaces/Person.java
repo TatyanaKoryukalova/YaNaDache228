@@ -23,13 +23,13 @@ public class Person implements Worker {
     }
 
     @Override
-    public String printName() {
-        return name;
+    public void printName() {
+        System.out.println(name);
     }
 
     @Override
-    public String printNameAndAge() {
-        return name + ", " + age + "y.o.";
+    public void printNameAndAge() {
+        System.out.println(name + ", " + age + "y.o.");
     }
 
 
