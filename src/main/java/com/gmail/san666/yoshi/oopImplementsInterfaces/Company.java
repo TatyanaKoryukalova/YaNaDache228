@@ -58,15 +58,14 @@ public class Company implements IdealCompany {
     @Override
     public void printAllStuffNames() {
         for (Worker worker : staff) {
-            System.out.println(worker.getName());
+            System.out.println(worker.printName());
         }
     }
 
     @Override
     public void printAllStuffNamesAndAge() {
         for (Worker worker : staff) {
-            System.out.println(worker.getName() + ", "
-                    + worker.getAge() + " y.o.");
+            System.out.println(worker.printNameAndAge());
         }
     }
 

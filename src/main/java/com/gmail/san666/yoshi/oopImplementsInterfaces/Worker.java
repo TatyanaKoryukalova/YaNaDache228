@@ -39,7 +39,7 @@ public interface Worker {
 
 
     /**
-     * Проверяет корректностьустанавливаемой зарплаты
+     * Проверяет корректность устанавливаемой зарплаты
      *
      * @param salary - новая зарплата
      * @throws SalaryLessThanAgeException в случае
@@ -57,4 +57,14 @@ public interface Worker {
     default double calculateIncomeTax() {
         return getSalary() * 0.13;
     }
+
+    /**
+     * Возвращает имя сотрудника
+     */
+    String printName();
+
+    /**
+     * Возвращает имя и возраст сотрудника
+     */
+    String printNameAndAge();
 }
